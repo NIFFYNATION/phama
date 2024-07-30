@@ -6,7 +6,7 @@ export default {
   ],
   
   theme: {
-    container: {
+    contain: {
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',

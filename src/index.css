@@ -1,3 +1,7 @@
+
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,16 +16,18 @@
     --secondary03: #F1F1F1;
   }
 
+
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: poppins;
+    font-family: "Inter", "Montserrat",  "Lato", sans-serif;
   }
 
 
-  .contain,
+.contain,
 .contain-fluid,
 .contain-xxl,
 .contain-xl,
@@ -61,4 +67,15 @@
   .contain-xxl, .contain-xl, .contain-lg, .contain-md, .contain-sm, .contain {
     max-width: 1320px;
   }
+}
+
+
+.backgroundBlue{
+  background: var(--primary01);
+  min-height: 60px;
+  align-content: center;
+}
+
+.textOnBlue{
+  color: var(--secondary03);
 }

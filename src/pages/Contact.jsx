@@ -1,12 +1,11 @@
-import PagesNav from "../components/PagesNav"
+import PagesNav from "../components/PagesNav";
 
 function Contact() {
-    return (
-        <div>
+  return (
+    <div>
       <PagesNav />
-            
-        </div>
-    )
+    </div>
+  );
 }
 
-export default Contact
+export default Contact;
