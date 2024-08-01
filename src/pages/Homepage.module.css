@@ -5,7 +5,7 @@
 
 /* .section2 */
 
-@media (min-width: 900px) {
+@media (min-width: 992px) {
   .sec2Row {
     display: flex !important;
   }
@@ -16,7 +16,7 @@
 }
 
 .image {
-  width: 250px;
+  max-width: 300px;
 }
 
 .headingContent p {

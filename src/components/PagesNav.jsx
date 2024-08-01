@@ -22,7 +22,7 @@ function PagesNav() {
           <Logo />
 
           <ul
-            className={`${open ? "" : "hidden md:flex"} bg-white z-[99999] md:bg-white w-full md:w-auto transition-all duration-500 ease-in pl-2 md:pl-9 pb-12 md:pb-0 gap-5 flex min-h-min flex-col md:flex-row items-start md:items-center`}
+            className={`${open ? "" : "hidden md:flex"} bg-white z-[99999] md:bg-white w-full md:w-auto transition-all duration-500 ease-in pl-2 md:pl-5 pb-12 md:pb-0 gap-5 flex min-h-min flex-col md:flex-row items-start md:items-center `}
           >
             <li>
               <NavLink to="/" className={`z-[99999]` + styles.anchor}>
@@ -57,7 +57,8 @@ function PagesNav() {
             <NavLink
               to="/Appointment"
               className={
-                ` ${open ? "" : "hidden md:flex"} z-[99999] ` + styles.anchor
+                ` ${open ? "" : "hidden md:flex"} z-[99999] ml-0 md:ml-[3rem] ` +
+                styles.anchor
               }
             >
               <Button btnClass="bg-primary02">Appointment</Button>

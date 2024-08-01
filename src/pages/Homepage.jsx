@@ -11,10 +11,10 @@ function Homepage() {
 
       <section>
         <div className="contain-fluid bg-[url(/BannerImg1.png)]  bg-cover bg-no-repeat h-auto ">
-          <div className="contain grid md:grid-cols-2">
-            <div className="min-w-full min-h-[400px]  flex items-center">
+          <div className="contain grid md:grid-cols">
+            <div className="w-full md:w-2/4 min-h-[400px]  flex items-center">
               <div className={`pt-32 pb-32 ` + styles.heroP}>
-                <p className="text-base bg-primary02 w-4/5 md:w-2/5 text-center mb-4 mt-7">
+                <p className="text-base bg-primary02 w-4/5 md:w-5/12 text-center mb-4 mt-7">
                   MEDICAL PROFESSIONALS
                 </p>
                 <h1 className="text-[35px] md:text-[50px]  font-bold text-primary03">
