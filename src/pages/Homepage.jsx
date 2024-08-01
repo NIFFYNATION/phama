@@ -1,6 +1,7 @@
 import Button from "../components/Button";
 import PagesNav from "../components/PagesNav";
 import styles from "./Homepage.module.css";
+import { NavLink } from "react-router-dom";
 
 function Homepage() {
   return (
@@ -56,10 +57,23 @@ function Homepage() {
                   Our team of highl professionals uses the latest heal
                   echnologies health quickly and easily.
                 </p>
-                <div className="text-2xl !text-[#C9C9C9] flex items-center ">
+
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => {
+                    return !isActive
+                      ? ""
+                      : "text-2xl !text-primary02 flex items-center";
+                  }}
+                >
                   <p className="pr-2 !text-black !text-lg">Read More </p>
                   <ion-icon name="add-circle"></ion-icon>
-                </div>
+                </NavLink>
+
+                {/* <div className="text-2xl !text-[#C9C9C9] flex items-center ">
+                  <p className="pr-2 !text-black !text-lg">Read More </p>
+                  <ion-icon name="add-circle"></ion-icon>
+                </div> */}
               </div>
               <div className={` ` + styles.content}>
                 <img src="/homeIcon2.png" alt="" />
@@ -68,10 +82,14 @@ function Homepage() {
                   Our team of highl professionals uses the latest heal
                   echnologies health quickly and easily.
                 </p>
-                <div className="text-2xl !text-[#C9C9C9] flex items-center ">
-                  <p className="pr-2 !text-black !text-lg">Read More </p>
-                  <ion-icon name="add-circle"></ion-icon>
-                </div>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => {
+                    return !isActive ? " " : "hover:bg-red-500";
+                  }}
+                >
+                  dddd
+                </NavLink>
               </div>
             </div>
             <div className={` grid sm:grid-flow-col `}>
