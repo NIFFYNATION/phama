@@ -4,7 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  
+
   theme: {
     contain: {
       padding: {
@@ -15,7 +15,20 @@ export default {
         '2xl': '6rem',
       },
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary01: '#0152A8',
+        primary02: '#0FE3AF',
+        primary03: '#143450',
+        secondary01: '#DCEDFE',
+        secondary02: '#E5F2EF',
+        secondary03: '#F1F1F1',
+      },
+
+      fontFamily: {
+
+      }
+    },
   },
   plugins: [],
 }

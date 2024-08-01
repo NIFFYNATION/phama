@@ -22,10 +22,10 @@ function PagesNav() {
           <Logo />
 
           <ul
-            className={`${open ? "" : "hidden md:flex"} transition-all duration-500 ease-in pl-2 md:pl-9 pb-12 md:pb-0 gap-5 flex min-h-min flex-col md:flex-row items-start md:items-center`}
+            className={`${open ? "" : "hidden md:flex"} bg-white z-[99999] md:bg-white w-full md:w-auto transition-all duration-500 ease-in pl-2 md:pl-9 pb-12 md:pb-0 gap-5 flex min-h-min flex-col md:flex-row items-start md:items-center`}
           >
             <li>
-              <NavLink to="/" className={styles.anchor}>
+              <NavLink to="/" className={`z-[99999]` + styles.anchor}>
                 Home
               </NavLink>
             </li>
@@ -54,13 +54,15 @@ function PagesNav() {
                 Contact
               </NavLink>
             </li>
+            <NavLink
+              to="/Appointment"
+              className={
+                ` ${open ? "" : "hidden md:flex"} z-[99999] ` + styles.anchor
+              }
+            >
+              <Button btnClass="bg-primary02">Appointment</Button>
+            </NavLink>
           </ul>
-          <NavLink
-            to="/Appointment"
-            className={`${open ? "" : "hidden md:flex"} ` + styles.anchor}
-          >
-            <Button>Appointment</Button>
-          </NavLink>
         </nav>
       </div>
     </header>
