@@ -14,9 +14,9 @@ function PagesNav() {
       <div className="contain ml-auto mr-auto">
         <div
           onClick={() => setOpen(!open)}
-          className="text-3xl absolute right right-8 bottom-30 pt-6  md:hidden"
+          className="text-3xl absolute right right-8 bottom-30 pt-6 md:hidden"
         >
-          <ion-icon name={open ? "close" : "menu"}></ion-icon>
+          <ion-icon className="" name={open ? "close" : "menu"}></ion-icon>
         </div>
         <nav className=" w-full mt-1 md:mt-0 md:w-auto h-24 md:h-28 flex justify-between items-start md:items-center flex-col md:flex-row ">
           <Logo />

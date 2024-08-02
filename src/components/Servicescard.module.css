@@ -1,0 +1,47 @@
+@media (min-width: 992px) {
+  .sec2Row {
+    display: flex !important;
+  }
+}
+
+.headingContent {
+  margin-top: 120px;
+}
+
+.image {
+  width: 300px;
+}
+
+.headingContent h3 {
+  font-size: 30px;
+  font-weight: 600;
+  max-width: 516px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1c1c1c;
+  padding-bottom: 1rem;
+}
+
+.content {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #f1f1f1;
+  padding: 0 15px;
+  align-content: center;
+}
+
+.content p {
+  font-size: clamp(9px, 8vw, 13px);
+  margin-top: 11px;
+  margin-bottom: 11px;
+  font-weight: 600;
+  color: #545454;
+  font-family: "Montserrat";
+}
+.content h2 {
+  font-family: "Montserrat";
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
