@@ -42,7 +42,7 @@ function Homepage() {
         </section>
 
         <section>
-          <div className="contain-fluid bg-[url(/BannerImg2.png)] mt-[160px] mt bg-cover bg-no-repeat h-auto ">
+          <div className="contain-fluid bg-[url(/BannerImg2.png)] mt-[160px] mt bg-center bg-no-repeat h-auto ">
             <div className="contain grid md:grid-cols">
               <div
                 className={`bg-white w-full md:w-[80%] lg:w-[45%] md:ml-auto md:mr-auto lg:ml-auto lg:mr-0 mt-28 mb-28 p-5 pt-5 pb-5 md:p-10 `}
