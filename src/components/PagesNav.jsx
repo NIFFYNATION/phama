@@ -14,7 +14,7 @@ function PagesNav() {
       <div className="contain ml-auto mr-auto">
         <div
           onClick={() => setOpen(!open)}
-          className="text-3xl absolute right right-8 bottom-30 pt-6 lg:hidden"
+          className="text-3xl absolute right right-[30px] md:right-[100px] bottom-30 pt-7 lg:hidden"
         >
           <ion-icon className="" name={open ? "close" : "menu"}></ion-icon>
         </div>

@@ -13,7 +13,7 @@ function Homepage() {
         </section>
 
         <section>
-          <div className="contain-fluid bg-[url(/BannerImg1.png)]  bg-cover bg-no-repeat h-auto ">
+          <div className="contain-fluid bg-[url(/BannerImg1.png)]  bg-center bg-no-repeat ">
             <div className="contain">
               <div className="w-full md:w-[80%] lg:w-[50%] min-h-[400px]  ">
                 <div className={`pt-32 pb-32 ` + styles.heroP}>
