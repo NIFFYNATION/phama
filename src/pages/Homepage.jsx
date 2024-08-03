@@ -1,7 +1,6 @@
 import Button from "../components/Button";
 import PagesNav from "../components/PagesNav";
 import ServicesCard from "../components/Servicescard";
-import TextBoderLine from "../components/Textborderline";
 import styles from "./Homepage.module.css";
 
 function Homepage() {
@@ -13,7 +12,7 @@ function Homepage() {
         </section>
 
         <section>
-          <div className="contain-fluid bg-[url(/BannerImg1.png)]  bg-center bg-no-repeat ">
+          <div className="contain-fluid bg-[url(/BannerImg1.png)] bg-center bg-no-repeat ">
             <div className="contain">
               <div className="w-full md:w-[80%] lg:w-[50%] min-h-[400px]  ">
                 <div className={`pt-32 pb-32 ` + styles.heroP}>
@@ -43,14 +42,13 @@ function Homepage() {
         </section>
 
         <section>
-          <div className="contain-fluid bg-[url(/BannerImg2.png)] bg-cover bg-no-repeat h-auto ">
+          <div className="contain-fluid bg-[url(/BannerImg2.png)] mt-[160px] mt bg-cover bg-no-repeat h-auto ">
             <div className="contain grid md:grid-cols">
               <div
                 className={`bg-white w-full md:w-[80%] lg:w-[45%] md:ml-auto md:mr-auto lg:ml-auto lg:mr-0 mt-28 mb-28 p-5 pt-5 pb-5 md:p-10 `}
               >
                 <div>
-                  <TextBoderLine>ABOUT US</TextBoderLine>
-
+                  <p className={`p `}>ABOUT US</p>
                   <div className="mt-2">
                     <h2 className="text-[30px] mb-2 font-semibold">
                       The Heart And Science Of Medicate Test

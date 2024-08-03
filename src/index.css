@@ -90,3 +90,15 @@ h1 {
 .textOnBlue {
   color: var(--secondary03);
 }
+
+.p {
+  margin-bottom: 1rem;
+  letter-spacing: 3px;
+  font-family: "Montserrat";
+  font-size: 15px;
+  border: 0.5px solid #cecece;
+  max-width: 110px;
+
+  color: #1c1c1c;
+  font-weight: 500;
+}
