@@ -14,7 +14,7 @@ function PagesNav() {
       <div className="contain ml-auto mr-auto">
         <div
           onClick={() => setOpen(!open)}
-          className="text-3xl absolute right right-8 bottom-30 pt-6 md:hidden"
+          className="text-3xl absolute right right-8 bottom-30 pt-6 lg:hidden"
         >
           <ion-icon className="" name={open ? "close" : "menu"}></ion-icon>
         </div>
@@ -22,7 +22,7 @@ function PagesNav() {
           <Logo />
 
           <ul
-            className={`${open ? "" : "hidden md:flex"} bg-white z-[99999] md:bg-white bg-red w-full md:w-auto transition-all duration-500 ease-in pl-2 md:pl-5 pb-12 md:pb-0 gap-5 flex min-h-min flex-col md:flex-row items-start md:items-center `}
+            className={`${open ? "" : "hidden lg:flex"} bg-white z-[99999] md:bg-white bg-red w-full lg:w-auto md:ml-[-10rem] mt-0 md:mt-[22rem] lg:mt-[0] pl-2 md:pl-5 pb-12 md:pb-0 gap-5 flex min-h-min flex-col lg:flex-row items-start lg:items-center `}
           >
             <li>
               <NavLink
@@ -88,7 +88,7 @@ function PagesNav() {
             <NavLink
               to="/Appointment"
               className={
-                ` ${open ? "" : "hidden md:flex"} z-[99999] ml-0 md:ml-[3rem] ` +
+                ` ${open ? "" : "hidden md:flex"} z-[99999] ml-0 lg:ml-[3rem] ` +
                 styles.anchor
               }
             >

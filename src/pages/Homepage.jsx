@@ -15,7 +15,7 @@ function Homepage() {
         <section>
           <div className="contain-fluid bg-[url(/BannerImg1.png)]  bg-cover bg-no-repeat h-auto ">
             <div className="contain">
-              <div className="w-full md:w-2/4 min-h-[400px]  ">
+              <div className="w-full md:w-[80%] lg:w-[50%] min-h-[400px]  ">
                 <div className={`pt-32 pb-32 ` + styles.heroP}>
                   <p className="text-base bg-primary02 w-4/5 md:w-5/12 text-center mb-4 mt-7">
                     MEDICAL PROFESSIONALS
@@ -43,10 +43,10 @@ function Homepage() {
         </section>
 
         <section>
-          <div className="contain-fluid bg-[url(/BannerImg2.png)]  bg-cover bg-no-repeat h-auto ">
+          <div className="contain-fluid bg-[url(/BannerImg2.png)] bg-cover bg-no-repeat h-auto ">
             <div className="contain grid md:grid-cols">
               <div
-                className={`bg-white w-full md:w-[45%] ml-auto mt-28 mb-28 p-2 pt-5 pb-5 md:p-10 `}
+                className={`bg-white w-full md:w-[80%] lg:w-[45%] md:ml-auto md:mr-auto lg:ml-auto lg:mr-0 mt-28 mb-28 p-5 pt-5 pb-5 md:p-10 `}
               >
                 <div>
                   <TextBoderLine>ABOUT US</TextBoderLine>
