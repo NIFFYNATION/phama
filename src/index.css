@@ -102,3 +102,22 @@ h1 {
   color: #1c1c1c;
   font-weight: 500;
 }
+
+/* style for about us in homepage */
+.span1 {
+  font-family: "Montserrat";
+}
+
+.span2 {
+  font-family: "MuseoModerno";
+}
+
+.span3 {
+  font-family: "Merienda";
+}
+.span3 {
+  font-family: "JetBrains Mono";
+}
+.span3 {
+  font-family: "IM FELL French Canon SC";
+}

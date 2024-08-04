@@ -13,18 +13,17 @@ function ServicesCard() {
 
         <div
           className={
-            `grid grid-rows-2 justify-center gap-[20px] my-5 ` + styles.sec2Row
+            `grid grid-rows-2 justify-center gap-[10px] my-5 ` + styles.sec2Row
           }
         >
-          <div className={` grid  sm:grid-flow-col  gap-[20px] `}>
-            <div className={` ` + styles.content}>
+          <div className={` grid sm:grid-flow-col  gap-[10px] `}>
+            <div className={`w-[280px] ` + styles.content}>
               <img src="/homeIcon1.png" alt="" />
               <h2>Angioplasty</h2>
               <p>
                 Our team of highl professionals uses the latest heal echnologies
                 health quickly and easily.
               </p>
-
               <NavLink
                 to="/"
                 className={
@@ -37,7 +36,8 @@ function ServicesCard() {
                 </div>
               </NavLink>
             </div>
-            <div className={` ` + styles.content}>
+
+            <div className={`w-[280px] ` + styles.content}>
               <img src="/homeIcon2.png" alt="" />
               <h2>Cardiology</h2>
               <p>
@@ -57,8 +57,9 @@ function ServicesCard() {
               </NavLink>
             </div>
           </div>
-          <div className={` grid sm:grid-flow-col `}>
-            <div className={`pt-4 md:pt-0 ` + styles.content}>
+
+          <div className={`grid sm:grid-flow-col `}>
+            <div className={`pt-4 md:pt-0 w-[280px] ` + styles.content}>
               <img src="/homeIcon3.png" alt="" />
               <h2>Dental</h2>
               <p>
@@ -77,19 +78,23 @@ function ServicesCard() {
                 </div>
               </NavLink>
             </div>
-            <div className={`p-0  ` + styles.content}>
-              <img src="/Img1.png" alt="" className={` `} />
+            <div className={`p-0 w-[280px] md:w[290px] ` + styles.content}>
+              <img
+                src="/Img1.png"
+                alt=""
+                className={`sm:object-cover object-center w-full h-64 `}
+              />
             </div>
           </div>
         </div>
 
         <div
           className={
-            `grid grid-rows-2 justify-center gap-[20px] ` + styles.sec2Row
+            `grid grid-rows-2 justify-center gap-[10px] ` + styles.sec2Row
           }
         >
           <div className={`grid sm:grid-flow-col `}>
-            <div className={`pt-4 md:pt-0 ` + styles.content}>
+            <div className={`pt-4 md:pt-0 w-[280px] ` + styles.content}>
               <img src="/homeIcon4.png" alt="" />
               <h2>Eye Care</h2>
               <p>
@@ -108,13 +113,14 @@ function ServicesCard() {
                 </div>
               </NavLink>
             </div>
-            <div className={`!p-0 ` + styles.content}>
+
+            <div className={`!p-0  w-[280px] md:w[290px] ` + styles.content}>
               <img src="/Img2.png" alt="" className={`image `} />
             </div>
           </div>
 
-          <div className={`grid sm:grid-flow-col gap-[20px] `}>
-            <div className={` ` + styles.content}>
+          <div className={`grid sm:grid-flow-col gap-[10px] `}>
+            <div className={`w-[280px] ` + styles.content}>
               <img src="/homeIcon5.png" alt="" />
               <h2>Orthopaedics</h2>
               <p>
@@ -133,7 +139,7 @@ function ServicesCard() {
                 </div>
               </NavLink>
             </div>
-            <div className={`` + styles.content}>
+            <div className={` w-[280.27px] ` + styles.content}>
               <img src="/homeIcon6.png" alt="" />
               <h2>Angioplasty</h2>
               <p>

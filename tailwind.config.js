@@ -25,10 +25,9 @@ export default {
         secondary03: '#F1F1F1',
       },
 
-      fontFamily: {
-
-      }
     },
+
+
   },
   plugins: [],
 }
