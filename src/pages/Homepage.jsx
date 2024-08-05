@@ -274,21 +274,11 @@ function Homepage() {
                         </div>
 
                         <div className="flex gap-1">
-                          <div>
-                            <img src={stars} alt="" />
-                          </div>
-                          <div>
-                            <img src={stars} alt="" />
-                          </div>
-                          <div>
-                            <img src={stars} alt="" />
-                          </div>
-                          <div>
-                            <img src={stars} alt="" />
-                          </div>
-                          <div>
-                            <img src={stars} alt="" />
-                          </div>
+                          <div className=" stars">{stars}</div>
+                          <div className=" stars">{stars}</div>
+                          <div className=" stars">{stars}</div>
+                          <div className=" stars">{stars}</div>
+                          <div className=" stars">{stars}</div>
                         </div>
                       </div>
                     );
@@ -314,17 +304,22 @@ const feedbacks = [
     specialty: "Dental Patient",
     comment:
       "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-    stars: "/homeIcon7.png",
+
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
   },
   {
     id: 2,
     profileName: "Vanseena Adams",
-    profilePicture: "/FeedbackImage1.png",
+    profilePicture: "/FeedbackImage2.png",
     profileIcon: "/FeedbackImage5.png",
     specialty: "Dental Patient",
     comment:
       "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-    stars: "/homeIcon7.png",
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
   },
   {
     id: 3,
@@ -334,16 +329,20 @@ const feedbacks = [
     specialty: "Dental Patient",
     comment:
       "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-    stars: "/homeIcon7.png",
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
   },
   {
     id: 4,
     profileName: "Vanseena Adams",
-    profilePicture: "/FeedbackImage1.png",
+    profilePicture: "/FeedbackImage4.png",
     profileIcon: "/FeedbackImage5.png",
     specialty: "Dental Patient",
     comment:
       "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-    stars: "/homeIcon7.png",
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
   },
 ];
