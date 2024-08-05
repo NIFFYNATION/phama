@@ -142,7 +142,7 @@ function Homepage() {
                 className={`w-full md:w-[60%] lg:w-[50%] text-center pt-28 pb-28 `}
               >
                 <p
-                  className={`text-[23px] md:text-[30px] text-secondary03 font-semibold`}
+                  className={`text-[23px] md:text-[30px] px-[24px] text-secondary03 font-semibold`}
                 >
                   Schedule an imperson or virtual appointment today
                 </p>
