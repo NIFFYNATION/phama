@@ -1,6 +1,7 @@
 import Button from "../components/Button";
 import PagesNav from "../components/PagesNav";
 import ServicesCard from "../components/Servicescard";
+import TextBoderLine from "../components/Textborderline";
 import styles from "./Homepage.module.css";
 
 function Homepage() {
@@ -205,9 +206,144 @@ function Homepage() {
             </div>
           </div>
         </section>
+
+        <section>
+          <div className="contain">
+            <div className="mt-[160px] grid ">
+              <div className={`text-center ` + styles.headingContent}>
+                <TextBoderLine>SERVICES</TextBoderLine>
+
+                <h3
+                  className={`text-[25px] md:text-[30px] leading-10 font-bold max-w-[516px] ml-auto mr-auto mb-[30px] `}
+                >
+                  Feedbacks about our service from the bottom of heart
+                </h3>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {feedbacks.map(
+                  ({
+                    id,
+                    profileName,
+                    specialty,
+                    profilePicture,
+                    profileIcon,
+                    comment,
+                    stars,
+                  }) => {
+                    return (
+                      <div
+                        key={id}
+                        className={`grid bg-secondary03 p-[46px] gap-8 `}
+                      >
+                        <div
+                          className={`flex justify-between items-center border-b-[1px] border-[#CDCDCD] `}
+                        >
+                          <div className={`flex gap-4 profileName `}>
+                            <div>
+                              <img
+                                src={profilePicture}
+                                alt=""
+                                className={`profilePicture `}
+                              />
+                            </div>
+                            <div className={`profileName `}>
+                              <h3
+                                className={`md:text-[20px] font-bold pt-[9px] `}
+                              >
+                                {profileName}
+                              </h3>
+                              <p className={`text-[#545454] mb-6 `}>
+                                {specialty}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div>
+                            <img
+                              src={profileIcon}
+                              alt=""
+                              className={`profilePicture `}
+                            />
+                          </div>
+                        </div>
+                        <div className={`mt-[px] `}>
+                          <p className={`text-[#545454] text-[16px] `}>
+                            {comment}
+                          </p>
+                        </div>
+
+                        <div className="flex gap-1">
+                          <div>
+                            <img src={stars} alt="" />
+                          </div>
+                          <div>
+                            <img src={stars} alt="" />
+                          </div>
+                          <div>
+                            <img src={stars} alt="" />
+                          </div>
+                          <div>
+                            <img src={stars} alt="" />
+                          </div>
+                          <div>
+                            <img src={stars} alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
       </body>
     </>
   );
 }
 
 export default Homepage;
+
+const feedbacks = [
+  {
+    id: 1,
+    profileName: "Robert Davis",
+    profilePicture: "/FeedbackImage1.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+    stars: "/homeIcon7.png",
+  },
+  {
+    id: 2,
+    profileName: "Vanseena Adams",
+    profilePicture: "/FeedbackImage1.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+    stars: "/homeIcon7.png",
+  },
+  {
+    id: 3,
+    profileName: "Mark Brown",
+    profilePicture: "/FeedbackImage3.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+    stars: "/homeIcon7.png",
+  },
+  {
+    id: 4,
+    profileName: "Vanseena Adams",
+    profilePicture: "/FeedbackImage1.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+    stars: "/homeIcon7.png",
+  },
+];
