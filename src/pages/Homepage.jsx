@@ -4,6 +4,58 @@ import ServicesCard from "../components/Servicescard";
 import TextBoderLine from "../components/Textborderline";
 import styles from "./Homepage.module.css";
 
+const feedbacks = [
+  {
+    id: 1,
+    profileName: "Robert Davis",
+    profilePicture: "/FeedbackImage1.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
+  },
+  {
+    id: 2,
+    profileName: "Vanseena Adams",
+    profilePicture: "/FeedbackImage2.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
+  },
+  {
+    id: 3,
+    profileName: "Mark Brown",
+    profilePicture: "/FeedbackImage3.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
+  },
+  {
+    id: 4,
+    profileName: "Vanseena Adams",
+    profilePicture: "/FeedbackImage4.png",
+    profileIcon: "/FeedbackImage5.png",
+    specialty: "Dental Patient",
+    comment:
+      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
+    stars: (
+      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
+    ),
+  },
+];
+
 function Homepage() {
   return (
     <>
@@ -211,10 +263,10 @@ function Homepage() {
           <div className="contain">
             <div className="mt-[160px] grid ">
               <div className={`text-center ` + styles.headingContent}>
-                <TextBoderLine>SERVICES</TextBoderLine>
+                <TextBoderLine>FEEDBACK</TextBoderLine>
 
                 <h3
-                  className={`text-[25px] md:text-[30px] leading-10 font-bold max-w-[516px] ml-auto mr-auto mb-[30px] `}
+                  className={`text-[25px] md:text-[30px] leading-10 font-semibold max-w-[516px] ml-auto mr-auto mb-[30px] `}
                 >
                   Feedbacks about our service from the bottom of heart
                 </h3>
@@ -288,61 +340,64 @@ function Homepage() {
             </div>
           </div>
         </section>
+
+        <section>
+          <div
+            className={`contain-fluid mt-[150px]  bg-[url(/LightBlueBanner.png)] bg-[#DCEDFE] bg-center bg-no-repeat flex justify-center`}
+          >
+            <div className="contain">
+              <div className="grid mt-[120px] mb-[220px]">
+                <div className="w-full md:w-[65%] mr-auto ml-auto ">
+                  <p className={`p !max-w-[300px] text-center mr-auto ml-auto`}>
+                    WHY CHOOSING PHARMA
+                  </p>
+                  <h4 className="text-[15px] mt-6 font-medium text-[#545454] w-full text-center">
+                    Completely synergize resource taxing relationships via
+                    premier niche markets. Professionally cultivate one-to-one
+                    customer service with robust ideas. Dynamically innovate.
+                  </h4>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4  mt-0 lg:mt-8 font-medium text-primary01">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                    <i class="fa-regular fa-circle-check "></i>
+                    <span>Blood clotting disorder</span>
+                  </div>
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>Blood clotting disorder</span>
+                  </div>
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>Blood clotting disorder</span>
+                  </div>
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>Blood clotting disorder</span>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 mt-0 lg:mt-8 font-medium text-primary01">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>Blood clotting disorder</span>
+                  </div>
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>Blood clotting disorder</span>
+                  </div>
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>Blood clotting disorder</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </body>
     </>
   );
 }
 
 export default Homepage;
-
-const feedbacks = [
-  {
-    id: 1,
-    profileName: "Robert Davis",
-    profilePicture: "/FeedbackImage1.png",
-    profileIcon: "/FeedbackImage5.png",
-    specialty: "Dental Patient",
-    comment:
-      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-
-    stars: (
-      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
-    ),
-  },
-  {
-    id: 2,
-    profileName: "Vanseena Adams",
-    profilePicture: "/FeedbackImage2.png",
-    profileIcon: "/FeedbackImage5.png",
-    specialty: "Dental Patient",
-    comment:
-      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-    stars: (
-      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
-    ),
-  },
-  {
-    id: 3,
-    profileName: "Mark Brown",
-    profilePicture: "/FeedbackImage3.png",
-    profileIcon: "/FeedbackImage5.png",
-    specialty: "Dental Patient",
-    comment:
-      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-    stars: (
-      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
-    ),
-  },
-  {
-    id: 4,
-    profileName: "Vanseena Adams",
-    profilePicture: "/FeedbackImage4.png",
-    profileIcon: "/FeedbackImage5.png",
-    specialty: "Dental Patient",
-    comment:
-      "Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate.",
-    stars: (
-      <i className="fa-solid fa-star stars text-[20px] text-[#FBB837]"></i>
-    ),
-  },
-];
