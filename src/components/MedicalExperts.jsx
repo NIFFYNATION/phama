@@ -139,7 +139,7 @@ function MedicalExperts() {
             <div className="grid md:grid-cols-2 mt-[120px] mb-[60px] items-center !mr-0 !ml-0 lg:mr-auto lg:ml-auto">
               <div className="text-secondary03">
                 <p
-                  className={`p !border-0 ring-1 p-1 ring-[#2B78CA] min-w-max start !text-secondary03 `}
+                  className={`p !border-0 ring-1 p-1 ring-[#2B78CA] min-w-[220px] text-center start !text-secondary03 `}
                 >
                   MEDICAL EXPERTS
                 </p>
