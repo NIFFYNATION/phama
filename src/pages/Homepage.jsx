@@ -1,4 +1,5 @@
 import Button from "../components/Button";
+import MedicalExperts from "../components/MedicalExperts";
 import PagesNav from "../components/PagesNav";
 import ServicesCard from "../components/Servicescard";
 import TextBoderLine from "../components/Textborderline";
@@ -394,6 +395,9 @@ function Homepage() {
               </div>
             </div>
           </div>
+        </section>
+        <section>
+          <MedicalExperts />
         </section>
       </body>
     </>
