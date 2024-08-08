@@ -1,5 +1,6 @@
 import Button from "./Button";
 import { useState } from "react";
+import Counter from "./Counter";
 
 const data = {
   MedsExperts: [
@@ -144,6 +145,7 @@ function MedicalExperts() {
             </div>
           </div>
         </div>
+        <Counter />
       </div>
     </section>
   );
