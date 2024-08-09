@@ -466,7 +466,7 @@ function Homepage() {
               <div className="flex-none sm:flex gap-6 items-center">
                 <img src="/HealthcareImg4.png" alt="" />
                 <div className="">
-                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[200px] text-center">
                     18 August 2023
                   </p>
                   <h3 className="text-[18px] font-[600]">
