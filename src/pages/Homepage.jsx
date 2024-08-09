@@ -399,6 +399,84 @@ function Homepage() {
         <section>
           <MedicalExperts />
         </section>
+
+        <div className="contain">
+          <div className="grid">
+            <div className="grid md:grid-cols-2 mt-[120px] mb-[60px] items-center !mr-0 !ml-0 lg:mr-auto lg:ml-auto">
+              <div className="">
+                <p
+                  className={`p !border-0 ring-1 p-1 ring-[#CECECE] min-w-[170px] text-center `}
+                >
+                  News Update
+                </p>
+                <h3 className="text-[25px] md:text-[30px] text-[#1C1C1C]  leading-10 font-bold">
+                  Latest Healthcare Articles
+                </h3>
+              </div>
+
+              <div
+                onClick={() => loadMore()}
+                className="md:ml-auto mt-8 md:mt-0"
+              >
+                <Button
+                  btnClass={
+                    `py-3 !text-primary01 bg-secondary03 hover:bg-primary01 border border-[#CECECE] ` +
+                    styles.btn
+                  }
+                >
+                  Read All News
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-4">
+              <div className="flex-none sm:flex gap-6 items-center min-w-[300px] lg:w-full">
+                <img src="/HealthcareImg1.png" alt="" />
+                <div className="">
+                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                    18 August 2023
+                  </p>
+                  <h3 className="text-[18px] font-[600]">
+                    Open letter to the residents of Ellsworth, Maine
+                  </h3>
+                </div>
+              </div>
+              <div className="flex-none sm:flex gap-6 items-center">
+                <img src="/HealthcareImg2.png" alt="" />
+                <div className="">
+                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                    18 August 2023
+                  </p>
+                  <h3 className="text-[18px] font-[600]">
+                    Open letter to the residents of Ellsworth, Maine
+                  </h3>
+                </div>
+              </div>
+              <div className="flex-none sm:flex gap-6 items-center">
+                <img src="/HealthcareImg3.png" alt="" />
+                <div className="">
+                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                    18 August 2023
+                  </p>
+                  <h3 className="text-[18px] font-[600]">
+                    Open letter to the residents of Ellsworth, Maine
+                  </h3>
+                </div>
+              </div>
+              <div className="flex-none sm:flex gap-6 items-center">
+                <img src="/HealthcareImg4.png" alt="" />
+                <div className="">
+                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                    18 August 2023
+                  </p>
+                  <h3 className="text-[18px] font-[600]">
+                    Open letter to the residents of Ellsworth, Maine
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </body>
     </>
   );
