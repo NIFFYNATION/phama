@@ -430,10 +430,10 @@ function Homepage() {
             </div>
 
             <div className="grid lg:grid-cols-2 gap-4">
-              <div className="flex-none sm:flex gap-6 items-center min-w-[300px] lg:w-full">
+              <div className="flex-none sm:flex gap-6 items-center  lg:w-full">
                 <img src="/HealthcareImg1.png" alt="" />
                 <div className="">
-                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                  <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[180px]">
                     18 August 2023
                   </p>
                   <h3 className="text-[18px] font-[600]">
@@ -444,7 +444,7 @@ function Homepage() {
               <div className="flex-none sm:flex gap-6 items-center">
                 <img src="/HealthcareImg2.png" alt="" />
                 <div className="">
-                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                  <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[180px]">
                     18 August 2023
                   </p>
                   <h3 className="text-[18px] font-[600]">
@@ -455,7 +455,7 @@ function Homepage() {
               <div className="flex-none sm:flex gap-6 items-center">
                 <img src="/HealthcareImg3.png" alt="" />
                 <div className="">
-                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[170px]">
+                  <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[180px]">
                     18 August 2023
                   </p>
                   <h3 className="text-[18px] font-[600]">
@@ -466,7 +466,7 @@ function Homepage() {
               <div className="flex-none sm:flex gap-6 items-center">
                 <img src="/HealthcareImg4.png" alt="" />
                 <div className="">
-                  <p className="p ring-1 p-1 ring-[#CECECE] min-w-[180px] text-center">
+                  <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[180px] text-center">
                     18 August 2023
                   </p>
                   <h3 className="text-[18px] font-[600]">
