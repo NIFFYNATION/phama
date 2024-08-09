@@ -1,5 +1,6 @@
 import Articles from "../components/Articles";
 import Button from "../components/Button";
+import Footer from "../components/Footer";
 import MedicalExperts from "../components/MedicalExperts";
 import PagesNav from "../components/PagesNav";
 import ServicesCard from "../components/Servicescard";
@@ -403,6 +404,10 @@ function Homepage() {
         <section>
           <Articles />
         </section>
+
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </>
   );

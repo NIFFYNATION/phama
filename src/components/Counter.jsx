@@ -39,7 +39,7 @@ import CountUp from "react-countup";
 function Counter() {
   const [countOn, setCounterOn] = useState(false);
   return (
-    <div className={`contain mt-[120px]`}>
+    <div className={`contain mt-[120px] pb-[60px]`}>
       <div className={``}>
         <div
           className={`grid md:grid-cols-3 lg:grid-cols-5 gap-3 text-secondary03 p-4 border-t-[1px] border-[#2B78CA] text-center`}
