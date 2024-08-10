@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function Logo() {
   return (
     <div className={`pt-3 md:pt-0 pb-6 md:pb-0 + ` + styles.logo}>
-      <NavLink href="/" className={styles.anchor}>
+      <NavLink to="/" className={styles.anchor}>
         {" "}
         <img src="/Logo.png" alt="" />{" "}
       </NavLink>

@@ -1,0 +1,12 @@
+.footer h4 {
+  color: #1c1c1c;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.footer li {
+  font-size: 15px;
+  margin-top: 10px;
+  color: #545454;
+}
