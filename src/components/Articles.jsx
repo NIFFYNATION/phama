@@ -84,7 +84,7 @@ function Articles() {
                       alt=""
                     />
                     <div className="">
-                      <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[160px] sm:min-w-[180px]">
+                      <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[170px] sm:min-w-[180px]">
                         {item.date}
                       </p>
                       <h3 className="text-[16px] font-[600]">
