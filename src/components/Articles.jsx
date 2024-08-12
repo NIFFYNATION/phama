@@ -1,6 +1,7 @@
 import styles from "./Articles.module.css";
 import { useState } from "react";
 import Button from "./Button";
+import { NavLink } from "react-router-dom";
 
 const data = {
   Article: [
@@ -68,18 +69,31 @@ function Articles() {
         <div className="grid lg:grid-cols-2 gap-4">
           {slice.map((item, index) => {
             return (
-              <div
-                key={index}
-                className="flex-none sm:flex gap-6 mt-6 items-center text-[#1C1C1C] lg:w-full"
-              >
-                <img src={item.photo} alt="" />
-                <div className="">
-                  <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[180px]">
-                    {item.date}
-                  </p>
-                  <h3 className="text-[16px] font-[600]">{item.headline}</h3>
-                </div>
-              </div>
+              <>
+                <NavLink to="/">
+                  <div
+                    key={index}
+                    className={
+                      `flex sm:flex gap-2 sm:gap-6 mt-6 items-center text-[#1C1C1C] lg:w-full ` +
+                      styles.artcle
+                    }
+                  >
+                    <img
+                      className="w-[150px] sm:w-[228px]"
+                      src={item.photo}
+                      alt=""
+                    />
+                    <div className="">
+                      <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[150px] sm:min-w-[180px]">
+                        {item.date}
+                      </p>
+                      <h3 className="text-[16px] font-[600]">
+                        {item.headline}
+                      </h3>
+                    </div>
+                  </div>
+                </NavLink>
+              </>
             );
           })}
         </div>

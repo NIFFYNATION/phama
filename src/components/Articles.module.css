@@ -1,3 +1,9 @@
 :hover.btn {
   color: white !important;
 }
+
+@media (max-width: 315px) {
+  .artcle {
+    display: grid !important;
+  }
+}
