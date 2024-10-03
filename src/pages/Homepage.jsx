@@ -68,7 +68,7 @@ function Homepage() {
         </section>
 
         <section>
-          <div className="contain-fluid bg-[url(/BannerImg1.png)] bg-center bg-no-repeat ">
+          <div className="contain-fluid bg-[url(/BannerImg1.png)] bg-center bg-no-repeat bg-cover">
             <div className="contain">
               <div className="w-full md:w-[80%] lg:w-[50%] min-h-[400px]  ">
                 <div className={`pt-32 pb-32 ` + styles.heroP}>
@@ -149,43 +149,34 @@ function Homepage() {
 
         <section>
           <div className={`contain `}>
-            <div className="grid mt-[50px] mb-[50px] lg:grid-cols-5 sm:grid-cols-2 ">
-              <div className={`flex items-center gap-2 justify-center `}>
-                <img src="/homeAbtIcon3.png" alt="" />
-                <span className={`text-primary01 font-bold text-[25px] span1 `}>
+            <div className="flex flex-wrap mt-[50px] mb-[50px] justify-center items-center gap-8 md:gap-20">
+              <div className="flex items-center gap-2 justify-center">
+                <img src="/homeAbtIcon3.png" alt="" className="w-10 h-10" />
+                <span className="text-primary01 font-bold text-lg">
                   Spinal Care
                 </span>
               </div>
-              <div
-                className={`flex items-center gap-2 justify-center mt-8 md:mt-8 lg:-mt-0 `}
-              >
-                <img src="/homeAbtIcon4.png" alt="" />
-                <span className={`text-primary01 font-bold text-[25px] span2 `}>
+              <div className="flex items-center gap-2 justify-center">
+                <img src="/homeAbtIcon4.png" alt="" className="w-10 h-10" />
+                <span className="text-primary01 font-bold text-lg">
                   Mr.Medical
                 </span>
               </div>
-              <div
-                className={`flex items-center gap-2 justify-center mt-8 md:mt-8 lg:-mt-0 `}
-              >
-                <img src="/homeAbtIcon5.png" alt="" />
-                <span className={`text-primary01 font-bold text-[25px] span3 `}>
+              <div className="flex items-center gap-2 justify-center">
+                <img src="/homeAbtIcon5.png" alt="" className="w-10 h-10" />
+                <span className="text-primary01 font-bold text-lg">
                   Twohands
                 </span>
               </div>
-              <div
-                className={`flex items-center gap-2 justify-center mt-8 md:mt-8 lg:-mt-0 `}
-              >
-                <img src="/homeAbtIcon6.png" alt="" />
-                <span className={`text-primary01 font-bold text-[25px] span4 `}>
-                  {" "}
+              <div className="flex items-center gap-2 justify-center">
+                <img src="/homeAbtIcon6.png" alt="" className="w-10 h-10" />
+                <span className="text-primary01 font-bold text-lg">
                   Health Care
                 </span>
               </div>
-              <div
-                className={`flex items-center gap-2 justify-center mt-8 md:mt-8 lg:-mt-0 `}
-              >
-                <img src="/homeAbtIcon7.png" alt="" />
-                <span className={`text-primary01 font-bold text-[23px] span5 `}>
+              <div className="flex items-center gap-2 justify-center">
+                <img src="/homeAbtIcon7.png" alt="" className="w-10 h-10" />
+                <span className="text-primary01 font-bold text-lg">
                   Medical Love
                 </span>
               </div>
@@ -351,10 +342,10 @@ function Homepage() {
             <div className="contain">
               <div className="grid mt-[120px] mb-[220px]">
                 <div className="w-full md:w-[65%] mr-auto ml-auto ">
-                  <p className={`p !max-w-[300px] text-center mr-auto ml-auto`}>
+                  <p className={`p !max-w-[300px] text-center mr-auto ml-auto md:text-center`}>
                     WHY CHOOSING PHARMA
                   </p>
-                  <h4 className="text-[15px] mt-6 font-medium text-[#545454] w-full text-center">
+                  <h4 className="text-[15px] mt-6 font-medium text-[#545454] w-full text-start md:text-center">
                     Completely synergize resource taxing relationships via
                     premier niche markets. Professionally cultivate one-to-one
                     customer service with robust ideas. Dynamically innovate.
@@ -362,34 +353,34 @@ function Homepage() {
                 </div>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4  mt-0 lg:mt-8 font-medium text-primary01">
-                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-start md:justify-center">
                     <i class="fa-regular fa-circle-check "></i>
                     <span>Blood clotting disorder</span>
                   </div>
-                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-start md:justify-center">
                     <i class="fa-regular fa-circle-check"></i>
                     <span>Blood clotting disorder</span>
                   </div>
-                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-start md:justify-center">
                     <i class="fa-regular fa-circle-check"></i>
                     <span>Blood clotting disorder</span>
                   </div>
-                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-start md:justify-center">
                     <i class="fa-regular fa-circle-check"></i>
                     <span>Blood clotting disorder</span>
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 mt-0 lg:mt-8 font-medium text-primary01">
-                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-start md:justify-center">
                     <i class="fa-regular fa-circle-check"></i>
                     <span>Blood clotting disorder</span>
                   </div>
-                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-start md:justify-center">
                     <i class="fa-regular fa-circle-check"></i>
                     <span>Blood clotting disorder</span>
                   </div>
-                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-center">
+                  <div className="flex mt-8 lg:mt-0 gap-2 items-center justify-start md:justify-center">
                     <i class="fa-regular fa-circle-check"></i>
                     <span>Blood clotting disorder</span>
                   </div>

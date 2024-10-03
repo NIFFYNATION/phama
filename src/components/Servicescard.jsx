@@ -83,7 +83,7 @@ function ServicesCard() {
               </NavLink>
             </div>
 
-            <div className={`w-[280px] ` + styles.content}>
+            <div className={`w-[280px] mt-10 md:mt-0 ` + styles.content}>
               <img src="/homeIcon2.png" alt="" />
               <h2>Cardiology</h2>
               <p>
@@ -104,7 +104,7 @@ function ServicesCard() {
             </div>
           </div>
 
-          <div className={`grid sm:grid-flow-col `}>
+          <div className={`grid sm:grid-flow-col mt-10 md:mt-0 `}>
             <div className={`pt-4 md:pt-0 w-[280px] ` + styles.content}>
               <img src="/homeIcon3.png" alt="" />
               <h2>Dental</h2>
@@ -139,7 +139,7 @@ function ServicesCard() {
             `grid grid-rows-2 justify-center gap-[10px] ` + styles.sec2Row
           }
         >
-          <div className={`grid sm:grid-flow-col `}>
+          <div className={`grid sm:grid-flow-col mt-10 md:mt-0 `}>
             <div className={`pt-4 md:pt-0 w-[280px] ` + styles.content}>
               <img src="/homeIcon4.png" alt="" />
               <h2>Eye Care</h2>
@@ -165,7 +165,7 @@ function ServicesCard() {
             </div>
           </div>
 
-          <div className={`grid sm:grid-flow-col gap-[10px] `}>
+          <div className={`grid sm:grid-flow-col gap-[10px] mt-10 md:mt-0 `}>
             <div className={`w-[280px] ` + styles.content}>
               <img src="/homeIcon5.png" alt="" />
               <h2>Orthopaedics</h2>
@@ -185,7 +185,7 @@ function ServicesCard() {
                 </div>
               </NavLink>
             </div>
-            <div className={` w-[280.27px] ` + styles.content}>
+            <div className={` w-[280.27px] mt-10 md:mt-0 ` + styles.content}>
               <img src="/homeIcon6.png" alt="" />
               <h2>Angioplasty</h2>
               <p>
@@ -212,7 +212,7 @@ function ServicesCard() {
 }
 function ServiceItem({ icon, title, description, image }) {
   return (
-    <div className={`bg-secondary03 p-6 rounded-lg ${styles.content}`}>
+    <div className={`bg-secondary03 p-6 rounded-lg  ${styles.content}`}>
       {image ? (
         <img
           src={image}
