@@ -1,12 +1,11 @@
-import PagesNav from "../components/PagesNav"
+import PagesNav from "../components/PagesNav";
 
 function Services() {
-    return (
-        <div>
+  return (
+    <div>
       <PagesNav />
-            
-        </div>
-    )
+    </div>
+  );
 }
 
-export default Services
+export default Services;

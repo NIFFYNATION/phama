@@ -88,7 +88,7 @@ function PagesNav() {
             <NavLink
               to="/Appointment"
               className={
-                ` ${open ? "" : "hidden md:flex"} z-[99999] ml-0 lg:ml-[3rem] ` +
+                ` ${open ? "" : "hidden md:flex"} z-[99999] ml-[0]  lg:ml-[10rem] ` +
                 styles.anchor
               }
             >
