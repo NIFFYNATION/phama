@@ -37,26 +37,6 @@ function About() {
           </p>
         </div>
       </div>
-
-      <div className="relative w-[90%] lg:w-full max-w-5xl mx-auto object-contain mt-">
-        <video
-          ref={videoRef}
-          className="w-full h-[100%] aspect-video "
-          src="/001.mp4"
-          poster="/vidBanner.jpg"
-          controls
-        >
-          Your browser does not support the video tag.
-        </video>
-        {!isPlaying && (
-          <button
-            onClick={togglePlay}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
-          >
-            {/* <img src="/playButton.png" alt="play" className="h-24 w-24" /> */}
-          </button>
-        )}
-      </div>
     </>
   );
 }
