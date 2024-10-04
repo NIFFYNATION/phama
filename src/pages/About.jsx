@@ -38,7 +38,7 @@ function About() {
         </div>
       </div>
 
-      <div className="relative w-[90%] lg:w-full max-w-5xl mx-auto object-contain mt-8">
+      <div className="relative w-[90%] lg:w-full max-w-5xl mx-auto object-contain mt-">
         <video
           ref={videoRef}
           className="w-full h-[100%] aspect-video "
@@ -51,9 +51,9 @@ function About() {
         {!isPlaying && (
           <button
             onClick={togglePlay}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-4 hover:bg-opacity-90 transition-all duration-300"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
           >
-            <img src="/playButton.png" alt="play" className="h-16 w-16" />
+            <img src="/playButton.png" alt="play" className="h-24 w-24" />
           </button>
         )}
       </div>
