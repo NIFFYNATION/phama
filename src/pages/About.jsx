@@ -1,3 +1,4 @@
+import Button from "../components/Button";
 import PagesNav from "../components/PagesNav";
 import { useState, useRef } from "react";
 
@@ -38,7 +39,7 @@ function About() {
         </div>
       </div>
 
-      <div className="relative w-[90%] lg:w-full max-w-5xl mx-auto object-contain mt-">
+      <div className="relative w-[90%] lg:w-full max-w-[69rem] mx-auto object-contain">
         <video
           ref={videoRef}
           className="w-full h-[100%] aspect-video "
@@ -56,6 +57,100 @@ function About() {
             <img src="/playButton.png" alt="play" className="h-24 w-24" />
           </button>
         )}
+      </div>
+      <div className="contain mt-[100px] font-medium">
+        <div className="flex flex-col md:flex-row gap-16 md:gap-16 lg:gap-32">
+          <div className="w-full md:w-1/2">
+            <p
+              className={`w-[160px] text-center text-[#1C1C1C] ring-1 ring-[#CECECE] ring-opacity-60 font-semibold tracking-[3px] text-[14px] font-['Montserrat']`}
+            >
+              THE LEADERS
+            </p>
+            <div className="mt-2">
+              <h2 className="text-[30px] mb-2 font-semibold">
+                The Heart And Science Of Medicate Test
+              </h2>
+              <p className="text-[16px] text-[#545454]">
+                Capitalize on low hanging fruit to identify a ballpark value
+                added activity to beta test. Override the digital divide with
+                information highway will close.
+              </p>
+              <p className="text-[16px] mt-8 text-[#545454]">
+                Capitalize on low hanging fruit to identify a ballpark value
+                added activity to beta test. Override the digital divide with
+                information highway will close.
+              </p>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2">
+            <p
+              className={`w-[160px] text-center text-[#1C1C1C] ring-1 ring-[#CECECE] ring-opacity-60 font-semibold tracking-[3px] text-[14px] font-['Montserrat']`}
+            >
+              OUR STORY
+            </p>
+            <div className="mt-2">
+              <h2 className="text-[30px] mb-2 font-semibold">
+                Our mission is to help patients live better.
+              </h2>
+              <p className="text-[16px] mb-4 text-[#545454] ">
+                Capitalize on low hanging fruit to identify a ballpark value
+                added activity to beta test. Override the digital divide with
+                information highway will close.
+              </p>
+              <ul className="list-none pl-0">
+                <li className="flex items-center mb-2">
+                  <span className="text-[#545454] mr-2 text-4xl leading-none flex items-center">
+                    •
+                  </span>
+                  <span className="text-[16px] text-[#545454]">
+                    Over 400 leading hospitals and clinics
+                  </span>
+                </li>
+                <li className="flex items-center mb-2">
+                  <span className="text-[#545454] mr-2 text-4xl leading-none flex items-center">
+                    •
+                  </span>
+                  <span className="text-[16px] text-[#545454]">
+                    Trusted doctors across 20+ specialties
+                  </span>
+                </li>
+                <li className="flex items-center mb-2">
+                  <span className="text-[#545454] mr-2 text-4xl leading-none flex items-center">
+                    •
+                  </span>
+                  <span className="text-[16px] text-[#545454]">
+                    Award-winning practice management
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={` mt-[100px] bg-[url(/BlueBanner.png)] bg-cover bg-center bg-no-repeat w-full py-8 md:py-12 lg:py-16`}
+      >
+        <div
+          className={`w-full md:w-[60%] lg:w-[60%] xl:w-[50%] mx-auto text-center px-4 md:px-0`}
+        >
+          <p
+            className={`text-[20px] sm:text-[23px] md:text-[26px] lg:text-[30px] text-secondary03 font-semibold mb-6 leading-tight w-[100%] md:w-[70%] mx-auto`}
+          >
+            Online consultations with Certified doctors
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+            <Button btnClass="bg-[#00E5A1] py-3 px-6 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto">
+              Book an Appointment
+            </Button>
+
+            <p className="text-white text-sm sm:text-base font-medium">(OR)</p>
+
+            <p className="bg-white py-3 px-6 sm:py-4 sm:px-8 !text-[#1C1C1C] text-sm sm:text-base font-semibold w-[60%] sm:w-auto">
+              Call: 1-800-123-9999
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );

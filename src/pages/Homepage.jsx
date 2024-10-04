@@ -342,7 +342,9 @@ function Homepage() {
             <div className="contain">
               <div className="grid mt-[120px] mb-[220px]">
                 <div className="w-full md:w-[65%] mr-auto ml-auto ">
-                  <p className={`p !max-w-[300px] text-center mr-auto ml-auto md:text-center`}>
+                  <p
+                    className={`p !max-w-[300px] text-center mr-auto ml-auto md:text-center`}
+                  >
                     WHY CHOOSING PHARMA
                   </p>
                   <h4 className="text-[15px] mt-6 font-medium text-[#545454] w-full text-start md:text-center">
