@@ -22,7 +22,7 @@ function PagesNav() {
   }, []);
 
   return (
-    <header className="relative">
+    <header className="relative z-[9999]">
       <FirstNav />
       <div className="contain ml-auto mr-auto">
         <div

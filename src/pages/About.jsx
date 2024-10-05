@@ -1,10 +1,15 @@
 import Button from "../components/Button";
 import PagesNav from "../components/PagesNav";
 import { useState, useRef } from "react";
+import AppointmentModal from "../components/AppointmentModal";
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+
 
 function About() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -16,6 +21,10 @@ function About() {
       setIsPlaying(!isPlaying);
     }
   };
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <>
       <PagesNav />
@@ -59,8 +68,8 @@ function About() {
         )}
       </div>
       <div className="contain mt-[100px] font-medium">
-        <div className="flex flex-col md:flex-row gap-16 md:gap-16 lg:gap-32">
-          <div className="w-full md:w-1/2">
+        <div className="flex flex-col md:flex-row gap-16 md:gap-16 lg:gap-32 mx-auto">
+          <div className="w-[90%] md:w-1/2 mx-auto">
             <p
               className={`w-[160px] text-center text-[#1C1C1C] ring-1 ring-[#CECECE] ring-opacity-60 font-semibold tracking-[3px] text-[14px] font-['Montserrat']`}
             >
@@ -82,7 +91,7 @@ function About() {
               </p>
             </div>
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-[90%] md:w-1/2 mx-auto">
             <p
               className={`w-[160px] text-center text-[#1C1C1C] ring-1 ring-[#CECECE] ring-opacity-60 font-semibold tracking-[3px] text-[14px] font-['Montserrat']`}
             >
@@ -140,9 +149,12 @@ function About() {
             Online consultations with Certified doctors
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-            <Button btnClass="bg-[#00E5A1] py-3 px-6 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto">
+            <Link 
+              className="bg-[#00E5A1] py-3 px-6 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto"
+              onClick={openModal}
+            >
               Book an Appointment
-            </Button>
+            </Link>
 
             <p className="text-white text-sm sm:text-base font-medium">(OR)</p>
 
@@ -151,7 +163,39 @@ function About() {
             </p>
           </div>
         </div>
+        
       </div>
+      <div className="contain mt-[100px] mb-[100px]">
+  <div className="text-start flex flex-col md:flex-row gap-16 md:gap-6 items-center mb-12">
+    <h2 className="text-[30px] md:text-[36px] font-bold mb-4 w-[90%] md:w-1/2">Our values that drive success</h2>
+    <p className="text-[14px] md:text-[16px] text-[#545454] w-[90%] md:w-1/2 mx-auto">
+      Our team of highly trained professionals uses the latest healing technologies to restore you to pain-free health quickly and easily. We thoroughly evaluate & treat all of the contributing root factors related to your issue. Includes, but is not limit, your work and home stressors.
+    </p>
+  </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    {[
+      { img: "/bio-tech-image.png", title: "Bio Technology" },
+      { img: "/vaccine-image.png", title: "Vaccine" },
+      { img: "/latest-tech-image.png", title: "Latest Technology" },
+      { img: "/expert-doctors-image.png", title: "Expert Doctors" }
+    ].map((item, index) => (
+      <div key={index} className="text-center ring-1 ring-[#CECECE] px-6 md:px-10 py-8 md:py-12  ring-opacity-60  w-[80%] md:w-full mx-auto">
+        <div className="bg-[#F0F5FF] w-20 h-20 rounded-full ring-1 ring-[#CECECE] ring-opacity-60 flex items-center justify-center mx-auto mb-4">
+          <img src={item.img} alt={item.title} className="w-20 h-20 object-contain" />
+        </div>
+        <h3 className="text-[18px] font-semibold mb-2">{item.title}</h3>
+        <p className="text-[14px] text-[#545454] w-[90%] md:w-full mx-auto">
+          Our team of highly trained professionals uses the latest healing technologies.
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<AppointmentModal isOpen={isModalOpen} onClose={closeModal} />
+<footer>
+          <Footer />
+        </footer>
     </>
   );
 }
