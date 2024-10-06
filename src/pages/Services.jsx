@@ -34,7 +34,9 @@ function Services() {
           </div>
         </div>
       </div>
-      <MedicalExperts />
+ 
+        <MedicalExperts title={<p className="text-center w-[100px]  ring-1 ring-[#2B78CA] ring-opacity-60">TEAM</p>} heading="The Doctorate Crew" />
+
     </>
   );
 }

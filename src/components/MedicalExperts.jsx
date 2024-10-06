@@ -63,7 +63,7 @@ const data = {
   ],
 };
 
-function MedicalExperts() {
+function MedicalExperts({ title = "MEDICAL EXPERTS", heading = "The Professional Doctors" }) {
   const [noOfElement, setnoOfElement] = useState(3);
   const loadMore = () => {
     setnoOfElement(noOfElement + noOfElement);
@@ -106,12 +106,13 @@ function MedicalExperts() {
             <div className="grid md:grid-cols-2 mt-[120px] mb-[60px] items-center !mr-0 !ml-0 lg:mr-auto lg:ml-auto">
               <div className="text-secondary03">
                 <p
-                  className={`p !border-0 ring-1 p-1 ring-[#2B78CA] min-w-[220px] text-center start !text-secondary03 `}
+                  className={`p !border-0 ring-[#2B78CA]  text-center !text-secondary03 `}
                 >
-                  MEDICAL EXPERTS
+                  {title}
+                  
                 </p>
                 <h3 className="text-[25px] md:text-[30px]  leading-10 font-bold">
-                  The Professional Doctors
+                  {heading}
                 </h3>
               </div>
 

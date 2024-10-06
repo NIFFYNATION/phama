@@ -1,8 +1,6 @@
 import Articles from "../components/Articles";
 import Button from "../components/Button";
-import Footer from "../components/Footer";
 import MedicalExperts from "../components/MedicalExperts";
-import PagesNav from "../components/PagesNav";
 import ServicesCard from "../components/Servicescard";
 import TextBoderLine from "../components/Textborderline";
 import styles from "./Homepage.module.css";
@@ -398,7 +396,7 @@ function Homepage() {
           </div>
         </section>
         <section>
-          <MedicalExperts />
+          <MedicalExperts title={<p className="text-center min-w-[220px]  ring-1 ring-[#2B78CA] ring-opacity-60">MEDICAL EXPERTS </p>} heading="The Professional Doctors" />
         </section>
         <section>
           <Articles />
