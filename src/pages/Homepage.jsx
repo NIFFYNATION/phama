@@ -6,6 +6,9 @@ import PagesNav from "../components/PagesNav";
 import ServicesCard from "../components/Servicescard";
 import TextBoderLine from "../components/Textborderline";
 import styles from "./Homepage.module.css";
+import AppointmentModal from "../components/AppointmentModal";
+import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const feedbacks = [
   {
@@ -60,13 +63,13 @@ const feedbacks = [
 ];
 
 function Homepage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <>
       <body>
-        <section>
-          <PagesNav />
-        </section>
-
         <section>
           <div className="contain-fluid bg-[url(/BannerImg1.png)] bg-center bg-no-repeat bg-cover">
             <div className="contain">
@@ -188,13 +191,16 @@ function Homepage() {
                 className={`w-full md:w-[60%] lg:w-[50%] text-center pt-28 pb-28 `}
               >
                 <p
-                  className={`text-[23px] md:text-[30px] px-[24px] text-secondary03 font-semibold`}
+                  className={`text-[23px] md:text-[30px] px-[24px] mb-12 text-secondary03 font-semibold`}
                 >
                   Schedule an imperson or virtual appointment today
                 </p>
-                <Button btnClass=" bg-primary02 py-[17px] px-[34px] !text-primary03 hover:bg-secondary03 hover:border hover:border-primary01 mt-5 ">
+                <Link
+                  className="bg-[#00E5A1] py-3 px-6 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto"
+                  onClick={openModal}
+                >
                   Book an Appointment
-                </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -397,10 +403,7 @@ function Homepage() {
         <section>
           <Articles />
         </section>
-
-        <footer>
-          <Footer />
-        </footer>
+        <AppointmentModal isOpen={isModalOpen} onClose={closeModal} />
       </body>
     </>
   );

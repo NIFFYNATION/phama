@@ -1,10 +1,6 @@
-import Button from "../components/Button";
-import PagesNav from "../components/PagesNav";
 import { useState, useRef } from "react";
 import AppointmentModal from "../components/AppointmentModal";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-
 
 function About() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -27,7 +23,6 @@ function About() {
 
   return (
     <>
-      <PagesNav />
       <div className="contain-fluid bg-[url(/BannerImg3.png)] bg-contain bg-no-repeat ">
         <div className=" contain-fluid">
           <div className="min-h-[170px] sm:min-h-[350px] lg:min-h-[450px] xl:min-h-[500px]"></div>
@@ -141,7 +136,7 @@ function About() {
         className={` mt-[100px] bg-[url(/BlueBanner.png)] bg-cover bg-center bg-no-repeat w-full py-8 md:py-12 lg:py-16`}
       >
         <div
-          className={`w-full md:w-[60%] lg:w-[60%] xl:w-[50%] mx-auto text-center px-4 md:px-0`}
+          className={`w-full md:w-[60%] lg:w-[60%] xl:w-[50%] mx-auto text-center px-4 md:px-0 pt-28 pb-28`}
         >
           <p
             className={`text-[20px] sm:text-[23px] md:text-[26px] lg:text-[30px] text-secondary03 font-semibold mb-6 leading-tight w-[100%] md:w-[70%] mx-auto`}
@@ -149,7 +144,7 @@ function About() {
             Online consultations with Certified doctors
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-            <Link 
+            <Link
               className="bg-[#00E5A1] py-3 px-6 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto"
               onClick={openModal}
             >
@@ -163,39 +158,49 @@ function About() {
             </p>
           </div>
         </div>
-        
       </div>
       <div className="contain mt-[100px] mb-[100px]">
-  <div className="text-start flex flex-col md:flex-row gap-16 md:gap-6 items-center mb-12">
-    <h2 className="text-[30px] md:text-[36px] font-bold mb-4 w-[90%] md:w-1/2">Our values that drive success</h2>
-    <p className="text-[14px] md:text-[16px] text-[#545454] w-[90%] md:w-1/2 mx-auto">
-      Our team of highly trained professionals uses the latest healing technologies to restore you to pain-free health quickly and easily. We thoroughly evaluate & treat all of the contributing root factors related to your issue. Includes, but is not limit, your work and home stressors.
-    </p>
-  </div>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    {[
-      { img: "/bio-tech-image.png", title: "Bio Technology" },
-      { img: "/vaccine-image.png", title: "Vaccine" },
-      { img: "/latest-tech-image.png", title: "Latest Technology" },
-      { img: "/expert-doctors-image.png", title: "Expert Doctors" }
-    ].map((item, index) => (
-      <div key={index} className="text-center ring-1 ring-[#CECECE] px-6 md:px-10 py-8 md:py-12  ring-opacity-60  w-[80%] md:w-full mx-auto">
-        <div className="bg-[#F0F5FF] w-20 h-20 rounded-full ring-1 ring-[#CECECE] ring-opacity-60 flex items-center justify-center mx-auto mb-4">
-          <img src={item.img} alt={item.title} className="w-20 h-20 object-contain" />
+        <div className="text-start flex flex-col md:flex-row gap-16 md:gap-6 items-center mb-12">
+          <h2 className="text-[30px] md:text-[36px] font-bold mb-4 w-[90%] md:w-1/2">
+            Our values that drive success
+          </h2>
+          <p className="text-[14px] md:text-[16px] text-[#545454] w-[90%] md:w-1/2 mx-auto">
+            Our team of highly trained professionals uses the latest healing
+            technologies to restore you to pain-free health quickly and easily.
+            We thoroughly evaluate & treat all of the contributing root factors
+            related to your issue. Includes, but is not limit, your work and
+            home stressors.
+          </p>
         </div>
-        <h3 className="text-[18px] font-semibold mb-2">{item.title}</h3>
-        <p className="text-[14px] text-[#545454] w-[90%] md:w-full mx-auto">
-          Our team of highly trained professionals uses the latest healing technologies.
-        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { img: "/bio-tech-image.png", title: "Bio Technology" },
+            { img: "/vaccine-image.png", title: "Vaccine" },
+            { img: "/latest-tech-image.png", title: "Latest Technology" },
+            { img: "/expert-doctors-image.png", title: "Expert Doctors" },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="text-center ring-1 ring-[#CECECE] px-6 md:px-10 py-8 md:py-12  ring-opacity-60  w-[80%] md:w-full mx-auto"
+            >
+              <div className="bg-[#F0F5FF] w-20 h-20 rounded-full ring-1 ring-[#CECECE] ring-opacity-60 flex items-center justify-center mx-auto mb-4">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-20 h-20 object-contain"
+                />
+              </div>
+              <h3 className="text-[18px] font-semibold mb-2">{item.title}</h3>
+              <p className="text-[14px] text-[#545454] w-[90%] md:w-full mx-auto">
+                Our team of highly trained professionals uses the latest healing
+                technologies.
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
 
-<AppointmentModal isOpen={isModalOpen} onClose={closeModal} />
-<footer>
-          <Footer />
-        </footer>
+      <AppointmentModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
 }
