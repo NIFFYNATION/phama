@@ -2,17 +2,32 @@ import styles from "./PagesNav.module.css";
 import Logo from "../components/Logo";
 import { Link, NavLink } from "react-router-dom";
 import FirstNav from "../components/FirstNav";
-import Button from "../components/Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef} from "react";
 import AppointmentModal from "./AppointmentModal";
 
 function PagesNav() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,6 +40,11 @@ function PagesNav() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const toggle = () => {
+    setOpen(!open);
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <>
@@ -41,6 +61,7 @@ function PagesNav() {
             <Logo />
 
             <ul
+              ref={menuRef}
               className={`${
                 open ? "left-0" : "-left-full"
               } lg:static fixed top-0 lg:h-auto h-screen bg-white z-[99999] w-[300px] lg:w-auto transition-all duration-300 ease-in lg:flex items-center gap-5 p-8 lg:p-0`}

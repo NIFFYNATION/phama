@@ -23,11 +23,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
           <Route path="dental" element={<Dental />} />
-          <Route
-            path="angioplasty
-"
-            element={<Angioplasty />}
-          />
+          <Route path="angioplasty" element={<Angioplasty />} />
           <Route path="cardiology" element={<Cardiology />} />
           <Route path="eyecare" element={<EyeCare />} />
           <Route path="endocrinology" element={<Endocrinology />} />
