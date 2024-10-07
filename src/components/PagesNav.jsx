@@ -103,12 +103,11 @@ function PagesNav() {
                 className={`${isMobile ? "" : "hidden lg:flex"} z-[99999] ml-[0] lg:ml-[10rem] ${styles.anchor}`}
               >
                 <Link
-                  className="bg-[#00E5A1] py-3 px-6 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto"
+                  className="bg-[#00E5A1] absolute md:relative py-3 px-6 mt-8 md:mt-0 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto"
                   onClick={openModal}
                 >
                   Appointment
                 </Link>
-                {/* <Button btnClass="bg-primary02 mt-8 md:mt-0">Appointment</Button> */}
               </NavLink>
             </ul>
           </nav>
