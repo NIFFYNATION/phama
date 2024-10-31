@@ -19,6 +19,15 @@ import TeamSingle from "./pages/TeamSingle";
 import Team from "./pages/Team";
 import Pricing from "./pages/Pricing";
 
+const serviceRoutes = [
+  { path: "dental", element: <Dental />, title: "Dental" },
+  { path: "cardiology", element: <Cardiology />, title: "Cardiology" },
+  { path: "eyecare", element: <EyeCare />, title: "Eye Care" },
+  { path: "endocrinology", element: <Endocrinology />, title: "Endocrinology" },
+  { path: "orthopaedics", element: <Orthopaedics />, title: "Orthopaedics" },
+  { path: "angioplasty", element: <Angioplasty />, title: "Angioplasty" },
+];
+
 function App() {
   return (
     <BrowserRouter>
@@ -27,12 +36,13 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
-          <Route path="dental" element={<Dental />} />
-          <Route path="angioplasty" element={<Angioplasty />} />
-          <Route path="cardiology" element={<Cardiology />} />
-          <Route path="eyecare" element={<EyeCare />} />
-          <Route path="endocrinology" element={<Endocrinology />} />
-          <Route path="orthopaedics" element={<Orthopaedics />} />
+          
+          {/* Medical Services Routes */}
+          {serviceRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+          
+          {/* Other Routes */}
           <Route path="team" element={<Team />} />
           <Route path="teamsingle" element={<TeamSingle />} />
           <Route path="blog" element={<Blog />} />
