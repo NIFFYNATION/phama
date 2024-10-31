@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from "./Articles.module.css";
 import { useState } from "react";
 import Button from "./Button";
@@ -67,35 +68,32 @@ function Articles() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-4">
-          {slice.map((item, index) => {
-            return (
-              <>
-                <NavLink to="/">
-                  <div
-                    key={index}
-                    className={
-                      `flex sm:flex gap-2 sm:gap-6 mt-6 items-center text-[#1C1C1C] lg:w-full ` +
-                      styles.artcle
-                    }
-                  >
-                    <img
-                      className="w-[150px] sm:w-[228px]"
-                      src={item.photo}
-                      alt=""
-                    />
-                    <div className="">
-                      <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[170px] sm:min-w-[180px]">
-                        {item.date}
-                      </p>
-                      <h3 className="text-[16px] font-[600]">
-                        {item.headline}
-                      </h3>
-                    </div>
+          {slice.map((item) => (
+            <React.Fragment key={item.id}>
+              <NavLink to="/">
+                <div
+                  className={
+                    `flex sm:flex gap-2 sm:gap-6 mt-6 items-center text-[#1C1C1C] lg:w-full ` +
+                    styles.artcle
+                  }
+                >
+                  <img
+                    className="w-[150px] sm:w-[228px]"
+                    src={item.photo}
+                    alt=""
+                  />
+                  <div className="">
+                    <p className="p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[170px] sm:min-w-[180px]">
+                      {item.date}
+                    </p>
+                    <h3 className="text-[16px] font-[600]">
+                      {item.headline}
+                    </h3>
                   </div>
-                </NavLink>
-              </>
-            );
-          })}
+                </div>
+              </NavLink>
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </div>

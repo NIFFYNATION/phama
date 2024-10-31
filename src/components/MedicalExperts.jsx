@@ -63,7 +63,10 @@ const data = {
   ],
 };
 
-function MedicalExperts({ title = "MEDICAL EXPERTS", heading = "The Professional Doctors" }) {
+function MedicalExperts({
+  title = "MEDICAL EXPERTS",
+  heading = "The Professional Doctors",
+}) {
   const [noOfElement, setnoOfElement] = useState(3);
   const loadMore = () => {
     setnoOfElement(noOfElement + noOfElement);
@@ -109,7 +112,6 @@ function MedicalExperts({ title = "MEDICAL EXPERTS", heading = "The Professional
                   className={`p !border-0 ring-[#2B78CA]  text-center !text-secondary03 `}
                 >
                   {title}
-                  
                 </p>
                 <h3 className="text-[25px] md:text-[30px]  leading-10 font-bold">
                   {heading}

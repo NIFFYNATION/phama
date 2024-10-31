@@ -3,38 +3,6 @@ import ScrollTrigger from "react-scroll-trigger";
 import style from "./Counter.module.css";
 import CountUp from "react-countup";
 
-// const data = counterBox([
-//   {
-//     id: 1,
-//     number: 25,
-//     fisrtP: Years,
-//     secondP: Experience,
-//   },
-//   {
-//     id: 1,
-//     number: 893,
-//     fisrtP: Medicament,
-//     secondP: Invented,
-//   },
-//   {
-//     id: 1,
-//     number: 75,
-//     fisrtP: Awards,
-//     secondP: Winned,
-//   },
-//   {
-//     id: 1,
-//     number: 673 + "k",
-//     fisrtP: Happy,
-//     secondP: Clients,
-//   },
-//   {
-//     id: 1,
-//     number: 751,
-//     fisrtP: Pharmacies,
-//     secondP: Partners,
-//   },
-// ]);
 
 function Counter() {
   const [countOn, setCounterOn] = useState(false);
