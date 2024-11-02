@@ -3,7 +3,7 @@ import PagesNav from "../components/PagesNav"
 function Appointment() {
     return (
         <div>
-      <PagesNav />
+      {/* <PagesNav /> */}
             
         </div>
     )

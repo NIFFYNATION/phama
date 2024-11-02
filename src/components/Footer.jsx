@@ -55,61 +55,31 @@ function Footer() {
             </div>
             <div>
               <h4>Explore</h4>
-              <ul className={` `}>
-                <li>
-                  <NavLink to="/" className={``}>
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/" className={``}>
-                    Services
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/" className={``}>
-                    About us
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/" className={``}>
-                    Testimonials
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/" className={``}>
-                    News
-                  </NavLink>
-                </li>
-              </ul>
+              <ul>
+  <li><NavLink to="/">Home</NavLink></li>
+  <li><NavLink to="/">Services</NavLink></li>
+  <li><NavLink to="/">About us</NavLink></li>
+  <li><NavLink to="/">Testimonials</NavLink></li>
+  <li><NavLink to="/">News</NavLink></li>
+</ul>
             </div>
             <div>
               <h4>Uitility Pages</h4>
               <ul className={` `}>
                 <li>
-                  <NavLink to="/" className={``}>
-                    Style Guide
-                  </NavLink>
+                  <NavLink to="/">Style Guide</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/" className={``}>
-                    Changelog
-                  </NavLink>
+                  <NavLink to="/">Changelog</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/" className={``}>
-                    Licenses
-                  </NavLink>
+                  <NavLink to="/">Licenses</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/" className={``}>
-                    Protected Page
-                  </NavLink>
+                  <NavLink to="/">Protected Page</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/" className={``}>
-                    404 Page
-                  </NavLink>
+                  <NavLink to="/">404 Page</NavLink>
                 </li>
               </ul>
             </div>

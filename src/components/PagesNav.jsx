@@ -186,17 +186,15 @@ function PagesNav() {
                   Contact Us
                 </NavLink>
               </li>
-              <NavLink
-                to="/Appointment"
-                className={`${isMobile ? "" : "hidden lg:flex"} z-[99999] ml-[0] lg:ml-[10rem] ${styles.anchor}`}
-              >
-                <Link
+              <li className={`${isMobile ? "" : "hidden lg:flex"} z-[99999] ml-[0] lg:ml-[10rem] ${styles.anchor}`}>
+                <NavLink
+                  to="/Appointment"
                   className="bg-[#00E5A1] absolute md:relative py-3 px-6 mt-8 md:mt-0 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto"
                   onClick={openModal}
                 >
                   Appointment
-                </Link>
-              </NavLink>
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </div>
