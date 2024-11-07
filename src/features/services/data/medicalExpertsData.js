@@ -4,7 +4,7 @@ export const medicalExperts = {
       id: 1,
       photo: "/HomeDoc1.png",
       docName: "Vanseena Adams",
-      specialty: "Dental Patient",
+      specialty: "Staff Nurse",
       socialLinks: {
         facebook: "https://facebook.com",
         instagram: "#",
@@ -15,7 +15,7 @@ export const medicalExperts = {
         id: 2,
         photo: "/HomeDoc2.png",
         docName: "Dr. Helen Wilmore",
-        specialty: "Dental Patient",
+        specialty: "Surgery Expert",
         socialLinks: {
             facebook: "https://facebook.com",
             instagram: "#",
@@ -26,7 +26,7 @@ export const medicalExperts = {
         id: 3,
         photo: "/HomeDoc3.png",
         docName: "Dr. Kate Winslot",
-        specialty: "Dental Patient",
+        specialty: "Dental Specialist",
         socialLinks: {
             facebook: "https://facebook.com",
             instagram: "#",
