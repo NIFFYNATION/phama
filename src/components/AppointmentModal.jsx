@@ -18,7 +18,7 @@ function AppointmentModal({ isOpen, onClose }) {
             <input type="text" placeholder="Name" className="w-full p-2 border text-sm sm:text-base" />
             <input type="email" placeholder="Email" className="w-full p-2 border text-sm sm:text-base" />
             <input type="tel" placeholder="Phone" className="w-full p-2 border text-sm sm:text-base" />
-            <input type="text" placeholder="Date" className="w-full p-2 border text-sm sm:text-base" />
+            <input type="date" placeholder="Date" className="w-full p-2 border text-sm sm:text-base" />
             <textarea placeholder="Subject" className="w-full p-2 border h-20 sm:h-24 text-sm sm:text-base"></textarea>
             <button type="submit" className="w-full bg-primary01 text-white p-2 text-sm sm:text-base">
               Book Now
