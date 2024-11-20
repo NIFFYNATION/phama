@@ -80,7 +80,7 @@ function TeamSingle() {
       <div className="contain flex items-center justify-center p-4 my-8">
   <div className="p-2 sm:p-0 flex flex-col lg:flex-row w-full max-w-6xl gap-6">
     {/* Appointment Form Section */}
-    <div className="w-full lg:w-3/5 p-4 sm:p-6 md:p-8 lg:p-16 bg-white bg-[#F1F1F1]">
+    <div className="w-full lg:w-3/5 p-4 sm:p-6 md:p-8 lg:p-16 bg-[#F1F1F1]">
       <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Book an appointment</h2>
       <p className="text-xs sm:text-sm text-[#545454] mb-4 sm:mb-6">
         Lorem Ipsum is simply dummy text of printing and typesetting industry standard dummy text the with the release.

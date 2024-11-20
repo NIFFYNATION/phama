@@ -23,7 +23,7 @@ function About() {
 
   return (
     <>
-      <div className="contain-fluid bg-[url(/BannerImg3.png)] bg-contain bg-no-repeat ">
+      <div className="contain-fluid bg-[url(/BannerImg3.png)]  bg-cover bg-center bg-no-repeat flex items-center justify-center">
         <div className=" contain-fluid">
           <div className="min-h-[170px] sm:min-h-[350px] lg:min-h-[450px] xl:min-h-[500px]"></div>
         </div>
