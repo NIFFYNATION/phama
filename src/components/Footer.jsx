@@ -103,7 +103,7 @@ function Footer() {
         </div>
       </div>
       <div className="contain-fluid py-4 text-center text-[#545454] text-[14px] font-medium">
-        <span>Copyright © Pharma | Designed by VictorFlow Templates</span>
+        <span>Copyright © Pharma</span>
       </div>
     </>
   );

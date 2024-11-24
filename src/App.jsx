@@ -51,6 +51,7 @@ function App() {
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
           <Route path="appointment" element={<Appointment />} />
+          <Route path="/blog/:id" element={<BlogSingle />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
