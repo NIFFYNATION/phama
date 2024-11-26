@@ -7,6 +7,7 @@ export const articleData = {
         author: "Dr. Lily Smith",
         authorRole: "Dental Specialist",
         date: "18 August 2023",
+        comment: "ggg",
         headline: "Open letter to the residents of Ellsworth, Maine",
         title: "Potential treatment for an Inflammatory blood disease",
         content: "Recent breakthroughs in inflammatory blood disease research have shown promising results. Our team of specialists has been working tirelessly to develop new treatment protocols that could benefit patients worldwide. The study, conducted over three years, demonstrates significant improvements in patient outcomes when combining traditional treatments with innovative therapeutic approaches.",
@@ -18,7 +19,7 @@ export const articleData = {
       },
       {
         id: 2,
-        photo: "/HealthcareImg2.png",
+        photo: "/HealthcareImg1.png",
         authorImage: "/authorImg.png",
         author: "Dr. James Wilson",
         authorRole: "Research Scientist",
