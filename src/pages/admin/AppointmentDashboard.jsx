@@ -6,7 +6,7 @@ const AppointmentModal = ({ appointment, onClose, onStatusChange }) => {
   if (!appointment) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center !z-[9999] p-2">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[95vh] overflow-y-auto m-2">
         <div className="sticky top-0 bg-white p-4 border-b">
           <div className="flex justify-between items-center">
@@ -70,31 +70,36 @@ const AppointmentModal = ({ appointment, onClose, onStatusChange }) => {
 
         {/* Action Buttons - Fixed at bottom on mobile */}
         <div className="sticky bottom-0 bg-white border-t p-4 mt-4">
-          <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3">
+          <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-3">
             <button
               onClick={() => {
-                onStatusChange(appointment.id, 'approved');
+                handleDelete(appointment.id);
                 onClose();
               }}
-              className="w-full sm:w-auto px-4 py-2.5 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm font-medium"
+              className="w-full sm:w-auto px-4 py-2.5 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium"
             >
-              Approve
+              Delete
             </button>
-            <button
-              onClick={() => {
-                onStatusChange(appointment.id, 'rejected');
-                onClose();
-              }}
-              className="w-full sm:w-auto px-4 py-2.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-medium"
-            >
-              Reject
-            </button>
-            <button
-              onClick={onClose}
-              className="w-full sm:w-auto px-4 py-2.5 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium"
-            >
-              Close
-            </button>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+              <button
+                onClick={() => {
+                  onStatusChange(appointment.id, 'approved');
+                  onClose();
+                }}
+                className="w-full sm:w-auto px-4 py-2.5 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm font-medium"
+              >
+                Approve
+              </button>
+              <button
+                onClick={() => {
+                  onStatusChange(appointment.id, 'rejected');
+                  onClose();
+                }}
+                className="w-full sm:w-auto px-4 py-2.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-medium"
+              >
+                Reject
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -110,7 +115,10 @@ const AppointmentDashboard = () => {
 
   useEffect(() => {
     const storedAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-    setAppointments(storedAppointments);
+    const nonDoctorAppointments = storedAppointments.filter(
+      appointment => !appointment.doctorName
+    );
+    setAppointments(nonDoctorAppointments);
   }, []);
 
   const handleStatusChange = (appointmentId, newStatus) => {
@@ -123,6 +131,17 @@ const AppointmentDashboard = () => {
     
     setAppointments(updatedAppointments);
     localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+  };
+
+  const handleDelete = (appointmentId) => {
+    if (window.confirm('Are you sure you want to delete this appointment?')) {
+      const updatedAppointments = appointments.filter(
+        appointment => appointment.id !== appointmentId
+      );
+      setAppointments(updatedAppointments);
+      localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+      setSelectedAppointment(null);
+    }
   };
 
   const filteredAppointments = appointments.filter(appointment => {
@@ -222,6 +241,15 @@ const AppointmentDashboard = () => {
                 >
                   Reject
                 </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete(appointment.id);
+                  }}
+                  className="px-3 py-1 text-sm bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}
@@ -300,6 +328,15 @@ const AppointmentDashboard = () => {
                           className="text-red-600 hover:text-red-900"
                         >
                           Reject
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(appointment.id);
+                          }}
+                          className="text-gray-600 hover:text-gray-900"
+                        >
+                          Delete
                         </button>
                       </div>
                     </td>

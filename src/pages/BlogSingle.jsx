@@ -11,9 +11,7 @@ import {
 } from "react-share";
 import { format, isValid } from "date-fns";
 import { articleData } from "../features/services/data/articleData";
-import Comments from '../components/Comments';
-
-
+import Comments from "../components/Comments";
 
 const BlogSingle = () => {
   const { id } = useParams();
@@ -100,62 +98,62 @@ const BlogSingle = () => {
         </div>
         <div className="contain border mt-16 mb-16"></div>
 
-<div className="max-w-none w-[90%] md:w-[57%] mx-auto">
-<div className="contain mt-8">
-          <div className="prose  p-4 mt-[60px] md:mt-[80px]">
-            {article.content}
+        <div className="max-w-none w-[90%] md:w-[57%] mx-auto">
+          <div className="contain mt-8">
+            <div className="prose  p-4 mt-[60px] md:mt-[80px]">
+              {article.content}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="w-[90%] md:w-[57%] mx-auto flex justify-between py-4 mt-8 border border-y-[#F4F2F0] border-y-[2px] border-x-0">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800 ml-4">
-          Share The Article:
-        </h2>
-        <div className="flex space-x-4 ml-4">
-          <FacebookShareButton
-            url={shareUrl}
-            quote={article.title}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <FacebookIcon size={32} round />
-            <span className="sr-only">Share on Facebook</span>
-          </FacebookShareButton>
+        <div className="w-[90%] md:w-[57%] mx-auto flex justify-between py-4 mt-8 border border-y-[#F4F2F0] border-y-[2px] border-x-0">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800 ml-4">
+            Share The Article:
+          </h2>
+          <div className="flex space-x-4 ml-4">
+            <FacebookShareButton
+              url={shareUrl}
+              quote={article.title}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <FacebookIcon size={32} round />
+              <span className="sr-only">Share on Facebook</span>
+            </FacebookShareButton>
 
-          <TwitterShareButton
-            url={shareUrl}
-            title={article.title}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <TwitterIcon size={32} round />
-            <span className="sr-only">Share on Twitter</span>
-          </TwitterShareButton>
+            <TwitterShareButton
+              url={shareUrl}
+              title={article.title}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <TwitterIcon size={32} round />
+              <span className="sr-only">Share on Twitter</span>
+            </TwitterShareButton>
 
-          <LinkedinShareButton
-            url={shareUrl}
-            title={article.title}
-            summary={article.content.substring(0, 100) + "..."}
-            source={window.location.origin}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <LinkedinIcon size={32} round />
-            <span className="sr-only">Share on LinkedIn</span>
-          </LinkedinShareButton>
+            <LinkedinShareButton
+              url={shareUrl}
+              title={article.title}
+              summary={article.content.substring(0, 100) + "..."}
+              source={window.location.origin}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <LinkedinIcon size={32} round />
+              <span className="sr-only">Share on LinkedIn</span>
+            </LinkedinShareButton>
 
-          <WhatsappShareButton
-            url={shareUrl}
-            title={article.title}
-            className="hover:opacity-80 transition-opacity"
-          >
-            <WhatsappIcon size={32} round />
-            <span className="sr-only">Share on WhatsApp</span>
-          </WhatsappShareButton>
+            <WhatsappShareButton
+              url={shareUrl}
+              title={article.title}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <WhatsappIcon size={32} round />
+              <span className="sr-only">Share on WhatsApp</span>
+            </WhatsappShareButton>
+          </div>
+        </div>
+        <div className="mt-8 w-[90%] md:w-[57%] mx-auto">
+          <Comments postId={id} />
         </div>
       </div>
-      <div className="mt-8 w-[90%] md:w-[57%] mx-auto">
-      <Comments postId={id} />
-      </div>
-</div>
     </>
   );
 };

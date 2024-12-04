@@ -149,14 +149,7 @@ function PagesNav() {
                         Blog
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        to="/blogsingle"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        Blog Single
-                      </Link>
-                    </li>
+
                     <li>
                       <Link
                         to="/appointmentpage"
@@ -186,9 +179,11 @@ function PagesNav() {
                   Contact Us
                 </NavLink>
               </li>
-              <li className={`${isMobile ? "" : "hidden lg:flex"} z-[99999] ml-[0] lg:ml-[10rem] ${styles.anchor}`}>
+              <li
+                className={`${isMobile ? "" : "hidden lg:flex"} z-[99999] ml-[0] lg:ml-[10rem] ${styles.anchor}`}
+              >
                 <NavLink
-                  to="/Appointment"
+                  to="/"
                   className="bg-[#00E5A1] absolute md:relative py-3 px-6 mt-8 md:mt-0 sm:py-4 sm:px-8 !text-[#1C1C1C] hover:bg-secondary03 text-sm sm:text-base font-semibold w-[60%] sm:w-auto"
                   onClick={openModal}
                 >

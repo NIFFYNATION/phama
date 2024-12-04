@@ -1,12 +1,5 @@
-import PagesNav from "../components/PagesNav"
-
 function Appointment() {
-    return (
-        <div>
-      {/* <PagesNav /> */}
-            
-        </div>
-    )
+  return <>ff</>;
 }
 
-export default Appointment
+export default Appointment;

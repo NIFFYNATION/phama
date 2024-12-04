@@ -18,12 +18,13 @@ import Blog from "./pages/Blog";
 import TeamSingle from "./pages/TeamSingle";
 import Team from "./pages/Team";
 import Pricing from "./pages/Pricing";
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminBlogSingle from './pages/admin/AdminBlogSingle';
-import CreatePost from './pages/admin/CreatePost';
-import EditPost from './pages/admin/EditPost';
-import AppointmentDashboard from './pages/admin/AppointmentDashboard';
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminBlogSingle from "./pages/admin/AdminBlogSingle";
+import CreatePost from "./pages/admin/CreatePost";
+import EditPost from "./pages/admin/EditPost";
+import AppointmentDashboard from "./pages/admin/AppointmentDashboard";
+import DoctorAppointments from "./pages/admin/DoctorAppointments";
 
 const serviceRoutes = [
   { path: "dental", element: <Dental />, title: "Dental" },
@@ -42,12 +43,12 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
-          
+
           {/* Medical Services Routes */}
           {serviceRoutes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}
-          
+
           {/* Other Routes */}
           <Route path="team" element={<Team />} />
           <Route path="teamsingle" element={<TeamSingle />} />
@@ -58,14 +59,21 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="appointment" element={<Appointment />} />
           <Route path="/blog/:id" element={<BlogSingle />} />
-          
+
           {/* Admin routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/blog/:id" element={<AdminBlogSingle />} />
           <Route path="/admin/posts/create" element={<CreatePost />} />
           <Route path="/admin/posts/:id/edit" element={<EditPost />} />
-          <Route path="/admin/appointments" element={<AppointmentDashboard />} />
+          <Route
+            path="/admin/appointments"
+            element={<AppointmentDashboard />}
+          />
+          <Route path="/admin">
+            <Route path="appointments" element={<AppointmentDashboard />} />
+            <Route path="doctor-appointments" element={<DoctorAppointments />} />
+          </Route>
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
