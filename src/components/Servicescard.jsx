@@ -2,51 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import styles from "./Servicescard.module.css";
 import TextBoderLine from "./Textborderline";
 
-const serviceItems = [
-  {
-    icon: "/homeIcon1.png",
-    title: "Angioplasty",
-    description:
-      "Our team of highly professionals uses the latest heal technologies health quickly and easily.",
-  },
-  {
-    icon: "/homeIcon2.png",
-    title: "Cardiology",
-    description:
-      "Our team of highly professionals uses the latest heal technologies health quickly and easily.",
-  },
-  {
-    icon: "/homeIcon3.png",
-    title: "Dental",
-    description:
-      "Our team of highly professionals uses the latest heal technologies health quickly and easily.",
-  },
-  {
-    image: "/Img1.png",
-  },
-
-  {
-    icon: "/homeIcon4.png",
-    title: "Eye Care",
-    description:
-      "Our team of highly professionals uses the latest heal technologies health quickly and easily.",
-  },
-  {
-    image: "/Img2.png",
-  },
-  {
-    icon: "/homeIcon5.png",
-    title: "Orthopaedics",
-    description:
-      "Our team of highly professionals uses the latest heal technologies health quickly and easily.",
-  },
-  {
-    icon: "/homeIcon6.png",
-    title: "Angioplasty",
-    description:
-      "Our team of highly professionals uses the latest heal technologies health quickly and easily.",
-  },
-];
 
 function ServicesCard() {
   return (

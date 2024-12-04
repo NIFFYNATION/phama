@@ -1,6 +1,52 @@
 import { useState } from 'react';
 import { medicalExperts } from '../features/services/data/medicalExpertsData';
 
+
+const SuccessPopup = ({ message, onClose }) => {
+  return (
+    <div className="fixed top-4 right-4 z-[9999] animate-slide-in">
+      <div className="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4 flex items-center gap-3">
+        <div className="bg-green-100 rounded-full p-1">
+          <svg 
+            className="w-6 h-6 text-green-500" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="2" 
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+        <div className="flex-1">
+          <p className="text-gray-800 font-medium">{message}</p>
+        </div>
+        <button 
+          onClick={onClose}
+          className="text-gray-400 hover:text-gray-600"
+        >
+          <svg 
+            className="w-5 h-5" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="2" 
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 function AppointmentPage() {
   const today = new Date().toISOString().split('T')[0];
 
@@ -132,25 +178,27 @@ function AppointmentPage() {
     <>
     
     <div className="contain-fluid absolute top-[160px]  text-center left-0 right-0 bg-[#DCEDFE] h-[200px] sm:h-[250px] md:h-[400px] items-center justify-center">
-    <h2 className="text-[35px] text-[#1C1C1C] w-[50%] mx-auto mt-[60px] font-bold">
+    <h2 className="text-[16px] md:text-[35px] text-[#1C1C1C] w-[70%] md:w-[50%] mx-auto mt-[60px] font-bold">
       Wide network of healthcare solutions
     </h2>
   </div>
-  <div className="w-[80%] mx-auto flex flex-col lg:flex-row relative bg-[#F1F1F1] min-h-screen md:min-h-[80vh] md:h-[70vh] mt-[190px] items-center justify-center px-4 md:px-6 lg:px-8">
+  <div className="w-[95%] md:w-[80%] mx-auto flex flex-col lg:flex-row pb-8 relative bg-[#F1F1F1] min-h-screen md:min-h-[60vh] mt-[130px] md:mt-[230px] items-center justify-center px-4 md:px-6 lg:px-8">
     <div className="w-full flex justify-center">
      
       {/* Appointment Form */}
       <div className="text-center">
-        <h1 className="font-bold text-gray-900">
+       <div className="flex flex-col items-center">
+       <p className="w-[160px] mt-8 mb-6 text-center text-[#1C1C1C] ring-1 ring-[#CECECE] ring-opacity-60 font-semibold tracking-[3px] text-[14px] font-['Montserrat']">
           APPOINTMENT
-        </h1>
+        </p>
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
           Consult with Our Experts
         </h2>
+       </div>
         <div className="mt-16">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Department and Doctor Selection */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="relative">
                 <select
                   name="department"
@@ -198,7 +246,7 @@ function AppointmentPage() {
             </div>
 
             {/* Personal Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <input
                 type="text"
                 name="name"
@@ -265,14 +313,24 @@ function AppointmentPage() {
           </form>
 
           {/* Thank You Message */}
-          <p className="text-center text-primary01 mt-4">
+          {/* <p className="text-center text-primary01 mt-4">
             Thank you for your booking, we will call you shortly
-          </p>
+          </p> */}
+
+{showSuccess && (
+        <SuccessPopup
+          message=" Thank you for your booking, we will call you shortly"
+          onClose={() => setShowSuccess(false)}
+        />
+      )}
         </div>
       </div>
      
     </div>
   </div>
+
+     {/* Success Popup */}
+     
     </>
     
     

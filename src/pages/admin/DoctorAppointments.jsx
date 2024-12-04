@@ -56,20 +56,22 @@ const DoctorAppointments = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div className="bg-white rounded-lg p-4 mb-6 flex gap-2">
-          {['all', 'pending', 'approved', 'rejected'].map((status) => (
-            <button
-              key={status}
-              onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg ${
-                filter === status 
-                  ? 'bg-primary01 text-white' 
-                  : 'bg-gray-100 hover:bg-gray-200'
-              }`}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
-          ))}
+        <div className="bg-white rounded-lg p-3 sm:p-4 mb-6 overflow-x-auto">
+          <div className="flex flex-nowrap gap-2 min-w-max sm:min-w-0">
+            {['all', 'pending', 'approved', 'rejected'].map((status) => (
+              <button
+                key={status}
+                onClick={() => setFilter(status)}
+                className={`px-3 sm:px-4 py-2 rounded-lg whitespace-nowrap text-sm sm:text-base ${
+                  filter === status 
+                    ? 'bg-primary01 text-white' 
+                    : 'bg-gray-100 hover:bg-gray-200'
+                }`}
+              >
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Appointments Grid */}
