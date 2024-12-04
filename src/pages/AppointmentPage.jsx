@@ -173,6 +173,18 @@ function AppointmentPage() {
     }
   };
 
+  // Add these custom classes in your global CSS or Tailwind config
+  const inputClasses = `
+    w-full p-3 sm:p-4 border 
+    focus:outline-none focus:border-primary01 
+    transition-all duration-300 
+    rounded-lg 
+    hover:shadow-sm 
+    focus:ring-2 focus:ring-primary01/30
+    placeholder-gray-400
+    group
+  `;
+
   // Update your department select options to use the departments object
   return (
     <>
@@ -204,7 +216,14 @@ function AppointmentPage() {
                   name="department"
                   value={formData.department}
                   onChange={handleChange}
-                  className="w-full p-3 border appearance-none bg-white pr-10 cursor-pointer focus:outline-none focus:border-primary01"
+                  className={`
+                    ${inputClasses}
+                    animate-select-pulse
+                    appearance-none 
+                    bg-white 
+                    pr-10 
+                    cursor-pointer
+                  `}
                   required
                 >
                   <option value="">Choose Department</option>
@@ -253,7 +272,7 @@ function AppointmentPage() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Enter your name here"
-                className="w-full p-3 border focus:outline-none focus:border-primary01"
+                className={`${inputClasses} animate-input-float`}
                 required
               />
 
@@ -263,7 +282,7 @@ function AppointmentPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email address"
-                className="w-full p-3 border focus:outline-none focus:border-primary01"
+                className={`${inputClasses} animate-input-slide`}
                 required
               />
             </div>
@@ -306,9 +325,33 @@ function AppointmentPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-primary01 text-white py-3 hover:bg-primary01/90 transition-colors font-medium"
+              className="
+                w-full 
+                bg-primary01 
+                text-white 
+                py-4 
+                hover:bg-primary01/90 
+                transition-colors 
+                font-medium 
+                group 
+                relative 
+                overflow-hidden
+              "
             >
-              Book Appointment Now
+              <span className="relative z-10">Book Appointment Now</span>
+              <span 
+                className="
+                  absolute 
+                  inset-0 
+                  bg-white/20 
+                  transform 
+                  -translate-x-full 
+                  group-hover:translate-x-0 
+                  transition-transform 
+                  duration-300 
+                  ease-in-out
+                "
+              ></span>
             </button>
           </form>
 
