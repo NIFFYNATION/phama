@@ -84,19 +84,14 @@ const Comments = ({ postId }) => {
   const CommentItem = ({ comment, isReply }) => (
     <div className={`${isReply ? 'ml-12' : ''} mb-6 p-4 bg-gray-50 rounded-lg`}>
       <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <img 
-            src={`https://ui-avatars.com/api/?name=${comment.name}`} 
-            alt={comment.name}
-            className="w-10 h-10 rounded-full"
-          />
+       
           <div>
             <h4 className="font-semibold">{comment.name}</h4>
             <p className="text-sm text-gray-500">
               {format(new Date(comment.date), 'MMM dd, yyyy')}
             </p>
           </div>
-        </div>
+       
         <div className="flex items-center gap-2">
           {comment.status === 'pending' && (
             <div className="flex gap-2">
@@ -184,13 +179,26 @@ const Comments = ({ postId }) => {
           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary01"
         />
 
-        <ReactQuill 
-          value={editorContent}
-          onChange={setEditorContent}
-          modules={modules}
-          placeholder="Write your comment here..."
-          className="bg-white rounded-lg"
-        />
+<textarea 
+  value={editorContent}
+  onChange={(e) => setEditorContent(e.target.value)}
+  placeholder="Write your comment here..."
+  rows={4}
+  className="
+    w-full 
+    p-3 
+    border 
+    border-gray-300 
+    rounded-lg 
+    focus:outline-none 
+    focus:ring-2 
+    focus:ring-primary01/30 
+    focus:border-primary01 
+    transition-all 
+    duration-300 
+    resize-vertical
+  "
+/>
 
         <div className="flex justify-between items-center">
           <button

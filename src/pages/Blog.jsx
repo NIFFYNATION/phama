@@ -18,9 +18,6 @@ function Blog() {
     // Get articles from start to current page (accumulative)
     const articles = articleData.Article.slice(0, articlesToShow);
     setDisplayedArticles(articles);
-    
-    // Smooth scroll to top
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
   const handlePageChange = (pageNumber) => {

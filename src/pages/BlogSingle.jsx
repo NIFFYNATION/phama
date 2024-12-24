@@ -16,7 +16,7 @@ import Comments from "../components/Comments";
 const BlogSingle = () => {
   const { id } = useParams();
 
-  // Find the article from articleData
+  // Find the article from articleData, converting id to number
   const article = articleData.Article.find(
     (article) => article.id === parseInt(id)
   );

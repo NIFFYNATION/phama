@@ -99,3 +99,27 @@ export const articleData = {
       }
     ],
   };
+
+export const addNewArticle = (newArticle) => {
+  // Generate a new unique ID
+  const newId = articleData.Article.length > 0 
+    ? Math.max(...articleData.Article.map(a => a.id)) + 1 
+    : 1;
+
+  // Create the full article object
+  const fullArticle = {
+    ...newArticle,
+    id: newId,
+    date: new Date().toISOString().split('T')[0],
+    socialLinks: {
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+      twitter: "https://twitter.com"
+    }
+  };
+
+  // Add the new article to the beginning of the array
+  articleData.Article.unshift(fullArticle);
+
+  return fullArticle;
+};

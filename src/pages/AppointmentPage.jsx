@@ -370,10 +370,7 @@ function AppointmentPage() {
       </div>
      
     </div>
-  </div>
-
-     {/* Success Popup */}
-     
+  </div>     
     </>
     
     
