@@ -2,6 +2,8 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
+import supabase, { supabaseUrl } from '/services/supabase.js';
+
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -29,11 +31,57 @@ const CreatePost = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log('New post:', post);
-    navigate('/admin/dashboard');
+    try {
+      // Upload featured image
+      let photoUrl = null;
+      if (post.photo) {
+        const photoFileName = `${Date.now()}-${post.photo.name}`;
+        const { data: photoData, error: photoError } = await supabase.storage
+          .from('articles')  // Make sure this bucket exists in Supabase storage
+          .upload(photoFileName, post.photo);
+        
+        if (photoError) throw photoError;
+        photoUrl = `${supabaseUrl}/storage/v1/object/public/articles/${photoFileName}`;
+      }
+
+      // Upload author image
+      let authorImageUrl = null;
+      if (post.authorImage) {
+        const authorImageFileName = `${Date.now()}-${post.authorImage.name}`;
+        const { data: authorImageData, error: authorImageError } = await supabase.storage
+          .from('articles')  // Using the same bucket for simplicity
+          .upload(`authors/${authorImageFileName}`, post.authorImage);
+        
+        if (authorImageError) throw authorImageError;
+        authorImageUrl = `${supabaseUrl}/storage/v1/object/public/articles/authors/${authorImageFileName}`;
+      }
+
+      // Create article in database
+      const { data, error } = await supabase
+        .from('articles')  // Changed from 'posts' to 'articles'
+        .insert([
+          {
+            title: post.title,
+            headline: post.headline,
+            photo_url: photoUrl,
+            author: post.author,
+            author_role: post.authorRole,
+            author_image_url: authorImageUrl,
+            content: post.content,
+            created_at: new Date().toISOString()
+          }
+        ]);
+
+      if (error) throw error;
+      
+      alert('Article created successfully!');
+      navigate('/admin/dashboard');
+    } catch (error) {
+      console.error('Error creating article:', error);
+      alert('Error creating article: ' + error.message);
+    }
   };
 
   return (
