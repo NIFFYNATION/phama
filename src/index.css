@@ -124,3 +124,14 @@ h1 {
 li {
   font-family: "Montserrat" !important;
 }
+
+.ql-editor {
+  min-height: 200px;
+}
+
+.ql-container {
+  font-size: 16px;
+}
+
+
+

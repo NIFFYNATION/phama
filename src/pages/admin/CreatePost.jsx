@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
 import supabase, { supabaseUrl } from '/services/supabase.js';
+import RichTextEditor from '../../components/RichTextEditor';
 
 
 const CreatePost = () => {
@@ -194,19 +195,9 @@ const CreatePost = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Content*
             </label>
-            <ReactQuill
+            <RichTextEditor
               value={post.content}
               onChange={(content) => setPost({ ...post, content })}
-              className="h-64 mb-12"
-              modules={{
-                toolbar: [
-                  [{ header: [1, 2, false] }],
-                  ['bold', 'italic', 'underline', 'strike'],
-                  ['link', 'image'],
-                  [{ list: 'ordered' }, { list: 'bullet' }],
-                  ['clean']
-                ]
-              }}
             />
           </div>
 

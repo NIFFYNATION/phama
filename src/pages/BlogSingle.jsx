@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   FacebookShareButton,
@@ -12,14 +13,64 @@ import {
 import { format, isValid } from "date-fns";
 import { articleData } from "../features/services/data/articleData";
 import Comments from "../components/Comments";
+import supabase, { supabaseUrl } from '/services/supabase.js';
+
 
 const BlogSingle = () => {
   const { id } = useParams();
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Find the article from articleData, converting id to number
-  const article = articleData.Article.find(
-    (article) => article.id === parseInt(id)
-  );
+  useEffect(() => {
+    fetchArticle();
+  }, [id]);
+
+  const fetchArticle = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+
+      // Check if the photo_url already contains the full URL
+      const photoUrl = data.photo_url
+        ? data.photo_url.startsWith('http') 
+          ? data.photo_url 
+          : `${supabaseUrl}/storage/v1/object/public/articles/${data.photo_url}`
+        : '/default-article-image.png';
+
+      const authorImageUrl = data.author_image
+        ? data.author_image.startsWith('http')
+          ? data.author_image
+          : `${supabaseUrl}/storage/v1/object/public/authors/${data.author_image}`
+        : '/authorImg.png';
+
+      // Add default social links if they don't exist
+      const articleWithDefaults = {
+        ...data,
+        photo_url: photoUrl,
+        photo: photoUrl, // Set both photo and photo_url
+        author_image: authorImageUrl,
+        authorImage: authorImageUrl,
+        socialLinks: data.social_links || {
+          instagram: "https://instagram.com",
+          facebook: "https://facebook.com",
+          twitter: "https://twitter.com"
+        },
+        authorRole: data.author_role || "Author"
+      };
+
+      console.log('Article data:', articleWithDefaults); // Debug log
+      setArticle(articleWithDefaults);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // If article not found, show error message
   if (!article) {
@@ -45,10 +96,14 @@ const BlogSingle = () => {
         </h2>
         <div className="contain relative h-[300px] w-full sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
           <img
-            src={article.photo}
+            src={article.photo_url}
             alt={article.title}
             className="absolute inset-0 w-full h-full object-cover object-center rounded-lg shadow-lg"
             loading="lazy"
+            onError={(e) => {
+              e.target.src = '/default-article-image.png';
+              console.log('Image failed to load:', article.photo_url);
+            }}
           />
           <div className="absolute inset-0 bg-black/10"></div>
         </div>
@@ -56,10 +111,14 @@ const BlogSingle = () => {
         <div className="contain flex flex-col sm:flex-row items-start sm:items-center justify-between mt-16">
           <div className="flex items-center mb-2 sm:mb-0">
             <img
-              src={article.authorImage}
+              src={article.author_image}
               alt={article.author}
               className="w-8 h-8 sm:w-16 sm:h-16 rounded-full mr-2 sm:mr-4"
               loading="lazy"
+              onError={(e) => {
+                e.target.src = article.author_image
+                console.log('Author image failed to load:', article.author_image);
+              }}
             />
 
             <div>
@@ -100,8 +159,8 @@ const BlogSingle = () => {
 
         <div className="max-w-none w-[90%] md:w-[57%] mx-auto">
           <div className="contain mt-8">
-            <div className="prose  p-4 mt-[60px] md:mt-[80px]">
-              {article.content}
+            <div className="prose  p-4 mt-[60px] md:mt-[80px]"  dangerouslySetInnerHTML={{ __html: article.content }}>
+              
             </div>
           </div>
         </div>

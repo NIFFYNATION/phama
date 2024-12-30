@@ -1,27 +1,71 @@
 import Articles from "../components/Articles";
 import Pagination from "../components/Pagination";
-import { articleData } from "../features/services/data/articleData";
 import { useState, useEffect } from "react";
+import  supabase, {supabaseUrl } from "/services/supabase";
+import { format, parseISO } from "date-fns";
 
 function Blog() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [displayedArticles, setDisplayedArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
   const articlesPerPage = 6;
 
-  // Calculate total pages
-  const totalPages = Math.ceil(articleData.Article.length / articlesPerPage);
-
-  // Update displayed articles when page changes
   useEffect(() => {
-    // Calculate how many articles to show based on current page
-    const articlesToShow = currentPage * articlesPerPage;
-    // Get articles from start to current page (accumulative)
-    const articles = articleData.Article.slice(0, articlesToShow);
-    setDisplayedArticles(articles);
-  }, [currentPage]);
+    fetchArticles();
+  }, [currentPage]); // Re-fetch when page changes
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const fetchArticles = async () => {
+    try {
+      // First, get the total count
+      const { count } = await supabase
+        .from('articles')
+        .select('*', { count: 'exact', head: true });
+
+      setTotalCount(count || 0);
+
+      // Then fetch the paginated data
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .range((currentPage - 1) * articlesPerPage, currentPage * articlesPerPage - 1);
+
+      if (error) throw error;
+
+      // Transform the data and handle image URLs
+      const transformedArticles = data.map(article => {
+        const photoUrl = article.photo_url
+          ? article.photo_url.startsWith('http')
+            ? article.photo_url
+            : `${supabaseUrl}/storage/v1/object/public/articles/${article.photo_url}`
+          : '/default-article-image.png';
+
+        return {
+          id: article.id,
+          title: article.title || '',
+          content: article.content || '',
+          photo: photoUrl,
+          photo_url: photoUrl,
+          author: article.author || '',
+          date: format(parseISO(article.created_at), 'MMMM d, yyyy'),
+          headline: article.headline || article.title || ''
+        };
+      });
+
+      setArticles(transformedArticles);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const totalPages = Math.ceil(totalCount / articlesPerPage);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on page change
   };
 
   const blogStyles = {
@@ -29,7 +73,7 @@ function Blog() {
     button: 'bg-blue-500 text-white',
     articleGrid: 'grid lg:grid-cols-3',
     articleCard: '!grid bg-gray-50 rounded-lg shadow',
-    image: '!w-full',
+    image: '!w-full h-[200px] object-cover',
     content: 'p-4',
     date: 'bg-blue-50',
     headline: 'text-xl !text-[#1C1C1C]'
@@ -46,24 +90,39 @@ function Blog() {
       </div>
       
       <div className="contain mt-[110px]">
-        <Articles 
-          customStyles={blogStyles}
-          containerClass="max-w-7xl mx-auto px-4"
-          gridClass="grid gap-8"
-          headingClass="text-blue-900"
-          articles={displayedArticles}
-          showHeader={false}
-          usePagination={true}
-          showReadMore={true}
-        />
+        {loading ? (
+          <div className="text-center py-8">Loading...</div>
+        ) : (
+          <>
+            {articles.length > 0 ? (
+              <>
+                <Articles 
+                  customStyles={blogStyles}
+                  containerClass="max-w-7xl mx-auto px-4"
+                  gridClass="grid gap-8"
+                  headingClass="text-blue-900"
+                  articles={articles}
+                  showHeader={false}
+                  showReadMore={true}
+                  usePagination={true}
+                />
 
-        {/* Only show pagination if there are more articles to load */}
-        {displayedArticles.length < articleData.Article.length && (
-          <Pagination 
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+                {totalPages > 1 && (
+                  <div className="mt-8">
+                    <Pagination 
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      onPageChange={handlePageChange}
+                    />
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                No articles available.
+              </div>
+            )}
+          </>
         )}
       </div>
     </>

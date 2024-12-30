@@ -1,22 +1,22 @@
 export const articleData = {
     Article: [
-      {
-        id: 1,
-        photo: "/HealthcareImg1.png",
-        authorImage: "/authorImg.png",
-        author: "Dr. Lily Smith",
-        authorRole: "Dental Specialist",
-        date: "18 August 2023",
-        comment: "ggg",
-        headline: "Open letter to the residents of Ellsworth, Maine",
-        title: "Potential treatment for an Inflammatory blood disease",
-        content: "Recent breakthroughs in inflammatory blood disease research have shown promising results. Our team of specialists has been working tirelessly to develop new treatment protocols that could benefit patients worldwide. The study, conducted over three years, demonstrates significant improvements in patient outcomes when combining traditional treatments with innovative therapeutic approaches.",
-        socialLinks: {
-          instagram: "https://instagram.com",
-          facebook: "https://facebook.com",
-          twitter: "https://twitter.com"
-        }
-      },
+      // {
+      //   id: 1,
+      //   photo: "/HealthcareImg1.png",
+      //   authorImage: "/authorImg.png",
+      //   author: "Dr. Lily Smith",
+      //   authorRole: "Dental Specialist",
+      //   date: "18 August 2023",
+      //   comment: "ggg",
+      //   headline: "Open letter to the residents of Ellsworth, Maine",
+      //   title: "Potential treatment for an Inflammatory blood disease",
+      //   content: "Recent breakthroughs in inflammatory blood disease research have shown promising results. Our team of specialists has been working tirelessly to develop new treatment protocols that could benefit patients worldwide. The study, conducted over three years, demonstrates significant improvements in patient outcomes when combining traditional treatments with innovative therapeutic approaches.",
+      //   socialLinks: {
+      //     instagram: "https://instagram.com",
+      //     facebook: "https://facebook.com",
+      //     twitter: "https://twitter.com"
+      //   }
+      // },
       // {
       //   id: 2,
       //   photo: "/HealthcareImg1.png",
@@ -100,26 +100,29 @@ export const articleData = {
     ],
   };
 
-export const addNewArticle = (newArticle) => {
-  // Generate a new unique ID
-  const newId = articleData.Article.length > 0 
-    ? Math.max(...articleData.Article.map(a => a.id)) + 1 
-    : 1;
+export const addNewArticle = async (newArticle) => {
+  try {
+    const { data, error } = await supabase
+      .from('articles')
+      .insert([
+        {
+          title: newArticle.title,
+          content: newArticle.content,
+          photo_url: newArticle.photo,
+          author: newArticle.author,
+          author_image: newArticle.authorImage,
+          author_role: newArticle.authorRole,
+          headline: newArticle.headline,
+          created_at: new Date().toISOString()
+        }
+      ])
+      .select()
+      .single();
 
-  // Create the full article object
-  const fullArticle = {
-    ...newArticle,
-    id: newId,
-    date: new Date().toISOString().split('T')[0],
-    socialLinks: {
-      instagram: "https://instagram.com",
-      facebook: "https://facebook.com",
-      twitter: "https://twitter.com"
-    }
-  };
-
-  // Add the new article to the beginning of the array
-  articleData.Article.unshift(fullArticle);
-
-  return fullArticle;
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error('Error adding new article:', error);
+    throw error;
+  }
 };

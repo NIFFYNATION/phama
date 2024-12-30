@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { articleData } from '../../features/services/data/articleData';
-import { format } from 'date-fns';
+import supabase, { supabaseUrl } from '/services/supabase.js';
+import { format, parseISO, isValid } from 'date-fns';
 
 const AdminDashboard = () => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,8 +14,37 @@ const AdminDashboard = () => {
       navigate('/admin/login');
     }
     
-    setArticles(articleData.Article);
+    fetchArticles();
   }, [navigate]);
+
+  const fetchArticles = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setArticles(data || []);
+    } catch (error) {
+      console.error('Error fetching articles:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'No date';
+    try {
+      const date = parseISO(dateString);
+      return isValid(date) ? format(date, 'MMM dd, yyyy') : 'Invalid date';
+    } catch (error) {
+      console.error('Date formatting error:', error);
+      return 'Invalid date';
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="p-3 sm:p-6 bg-gray-50 min-h-screen">
@@ -68,7 +98,7 @@ const AdminDashboard = () => {
                   <h3 className="font-semibold mb-2 line-clamp-2">{article.title}</h3>
                   <div className="space-y-2 text-sm text-gray-600">
                     <p>Author: {article.author}</p>
-                    <p>Date: {format(new Date(article.date), 'MMM dd, yyyy')}</p>
+                    <p>Date: {formatDate(article.created_at)}</p>
                   </div>
                   <div className="flex gap-3 mt-4">
                     <button
@@ -105,7 +135,7 @@ const AdminDashboard = () => {
                       <td className="py-3 px-4">{article.title}</td>
                       <td className="py-3 px-4">{article.author}</td>
                       <td className="py-3 px-4">
-                        {format(new Date(article.date), 'MMM dd, yyyy')}
+                        {formatDate(article.created_at)}
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex gap-4">
