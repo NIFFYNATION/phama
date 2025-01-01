@@ -1,14 +1,39 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { articleData } from '../../features/services/data/articleData';
+import { useEffect, useState } from 'react';
+import supabase, { supabaseUrl } from '/services/supabase.js';
+
 import Comments from '../../components/Comments';
 
 const AdminBlogSingle = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
-  const article = articleData.Article.find(
-    (article) => article.id === parseInt(id)
-  );
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('articles')
+          .select('*')
+          .eq('id', id)
+          .single();
+
+        if (error) throw error;
+        setArticle(data);
+      } catch (error) {
+        console.error('Error fetching article:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticle();
+  }, [id]);
+
+  if (loading) {
+    return <div className="contain">Loading...</div>;
+  }
 
   if (!article) {
     return <div className="contain">Article not found</div>;
