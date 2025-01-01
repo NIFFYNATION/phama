@@ -10,7 +10,7 @@ import {
   LinkedinIcon,
   WhatsappIcon,
 } from "react-share";
-import { format, isValid } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { articleData } from "../features/services/data/articleData";
 import Comments from "../components/Comments";
 import supabase, { supabaseUrl } from '/services/supabase.js';
@@ -35,6 +35,11 @@ const BlogSingle = () => {
 
       if (error) throw error;
 
+      // Format the date from created_at
+      const formattedDate = data.created_at 
+        ? format(parseISO(data.created_at), "MMMM d, yyyy • h:mm a")
+        : "No date available";
+
       // Check if the photo_url already contains the full URL
       const photoUrl = data.photo_url
         ? data.photo_url.startsWith('http') 
@@ -42,11 +47,12 @@ const BlogSingle = () => {
           : `${supabaseUrl}/storage/v1/object/public/articles/${data.photo_url}`
         : '/default-article-image.png';
 
-      const authorImageUrl = data.author_image
-        ? data.author_image.startsWith('http')
-          ? data.author_image
-          : `${supabaseUrl}/storage/v1/object/public/authors/${data.author_image}`
-        : '/authorImg.png';
+     // In the fetchArticle function:
+const authorImageUrl = data.author_image
+? data.author_image.startsWith('http')
+  ? data.author_image
+  : `${supabaseUrl}/storage/v1/object/public/articles/${data.author_image}` // Match the stored path
+: '/authorImg.png';
 
       // Add default social links if they don't exist
       const articleWithDefaults = {
@@ -60,7 +66,8 @@ const BlogSingle = () => {
           facebook: "https://facebook.com",
           twitter: "https://twitter.com"
         },
-        authorRole: data.author_role || "Author"
+        authorRole: data.author_role || "Author",
+        date: formattedDate, // Add formatted date
       };
 
       console.log('Article data:', articleWithDefaults); // Debug log
@@ -86,9 +93,7 @@ const BlogSingle = () => {
       <div className="relative mt-[50px]">
         <div>
           <p className="text-sm text-center text-gray-600">
-            {isValid(jsDate)
-              ? format(jsDate, "MMMM d, yyyy • h:mm a")
-              : "No date available"}
+            {article.date}
           </p>
         </div>
         <h2 className="text-xl text-center sm:text-3xl md:text-4xl font-bold leading-tight mb-4 sm:mb-8 mt-[50px]">
