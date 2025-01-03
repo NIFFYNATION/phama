@@ -65,15 +65,17 @@ function Team() {
       <div className="contain">
         <div className="grid mt-32">
 
+
+
+
       
-        <Link to="/teamsingle">
         <div className="grid md:grid-cols-3 gap-8 text-secondary03">
             {slice.map((doctor) => (
-              <DoctorCard key={doctor.id} {...doctor} />
+              <Link key={doctor.id} to={`/teamsingle/${doctor.id}`}>
+                <DoctorCard {...doctor} />
+              </Link>
             ))}
           </div>
-        
-        </Link>
               
        
           <div className="grid md:grid-cols-2 mt-[20px] mb-[60px] items-center !mr-0 !ml-0 lg:mr-auto lg:ml-auto">

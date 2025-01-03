@@ -50,7 +50,7 @@ function App() {
 
           {/* Other Routes */}
           <Route path="team" element={<Team />} />
-          <Route path="teamsingle" element={<TeamSingle />} />
+          <Route path="teamsingle/:id" element={<TeamSingle />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blogsingle" element={<BlogSingle />} />
           <Route path="appointmentpage" element={<AppointmentPage />} />
