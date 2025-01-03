@@ -4,7 +4,6 @@ import HomePage from "./pages/Homepage";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
-import Appointment from "./pages/Appointment";
 import PageNotFound from "./pages/PageNotFound";
 import Dental from "./pages/Dental";
 import Angioplasty from "./pages/Angioplasty";
@@ -57,7 +56,6 @@ function App() {
           <Route path="appointmentpage" element={<AppointmentPage />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="appointment" element={<Appointment />} />
           <Route path="/blog/:id" element={<BlogSingle />} />
 
           {/* Admin routes */}

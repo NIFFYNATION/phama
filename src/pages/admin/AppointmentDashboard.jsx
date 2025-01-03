@@ -1,9 +1,29 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import supabase from '/services/supabase.js';
 
 const AppointmentModal = ({ appointment, onClose, onStatusChange }) => {
   if (!appointment) return null;
+  
+
+  // Format the date safely
+  const formatDate = (dateString) => {
+    try {
+      return format(new Date(dateString), 'MMM dd, yyyy');
+    } catch (error) {
+      return 'Date not available';
+    }
+  };
+
+  // Format the created_at date safely
+  const formatCreatedAt = (dateString) => {
+    try {
+      return format(new Date(dateString), 'MMM dd, yyyy HH:mm');
+    } catch (error) {
+      return 'Time not available';
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center !z-[9999] p-2">
@@ -34,7 +54,7 @@ const AppointmentModal = ({ appointment, onClose, onStatusChange }) => {
                 {appointment.status.toUpperCase()}
               </span>
               <span className="text-sm text-gray-500">
-                {format(new Date(appointment.createdAt), 'MMM dd, yyyy HH:mm')}
+              {formatCreatedAt(appointment.created_at)}
               </span>
             </div>
 
@@ -111,36 +131,86 @@ const AppointmentDashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const [filter, setFilter] = useState('all');
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-    const nonDoctorAppointments = storedAppointments.filter(
-      appointment => !appointment.doctorName
-    );
-    setAppointments(nonDoctorAppointments);
+    fetchAppointments();
+    
+    // Subscribe to realtime changes
+    const channel = supabase
+      .channel('appointments_changes')
+      .on('postgres_changes', 
+        { event: '*', schema: 'public', table: 'appointments' }, 
+        () => {
+          fetchAppointments();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
-  const handleStatusChange = (appointmentId, newStatus) => {
-    const updatedAppointments = appointments.map(appointment => {
-      if (appointment.id === appointmentId) {
-        return { ...appointment, status: newStatus };
-      }
-      return appointment;
-    });
-    
-    setAppointments(updatedAppointments);
-    localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+  const fetchAppointments = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('appointments')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setAppointments(data || []);
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleDelete = (appointmentId) => {
-    if (window.confirm('Are you sure you want to delete this appointment?')) {
-      const updatedAppointments = appointments.filter(
-        appointment => appointment.id !== appointmentId
+  const handleStatusChange = async (appointmentId, newStatus) => {
+    try {
+      const { error } = await supabase
+        .from('appointments')
+        .update({ status: newStatus })
+        .eq('id', appointmentId);
+
+      if (error) throw error;
+      
+      // Update local state
+      setAppointments(prev => 
+        prev.map(appointment => 
+          appointment.id === appointmentId 
+            ? { ...appointment, status: newStatus }
+            : appointment
+        )
       );
-      setAppointments(updatedAppointments);
-      localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
-      setSelectedAppointment(null);
+    } catch (error) {
+      console.error('Error updating appointment status:', error);
+      alert('Error updating appointment status');
+    }
+  };
+
+  const handleDelete = async (appointmentId) => {
+    if (window.confirm('Are you sure you want to delete this appointment?')) {
+      try {
+        const { error } = await supabase
+          .from('appointments')
+          .delete()
+          .eq('id', appointmentId);
+
+        if (error) throw error;
+        
+        // Update local state
+        setAppointments(prev => 
+          prev.filter(appointment => appointment.id !== appointmentId)
+        );
+        setSelectedAppointment(null);
+      } catch (error) {
+        console.error('Error deleting appointment:', error);
+        alert('Error deleting appointment');
+      }
     }
   };
 
@@ -148,6 +218,16 @@ const AppointmentDashboard = () => {
     if (filter === 'all') return true;
     return appointment.status === filter;
   });
+
+  if (loading) {
+    return (
+      <div className="p-4 sm:p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="animate-pulse">Loading appointments...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-2 sm:p-6 bg-gray-50 min-h-screen">

@@ -9,31 +9,67 @@ const DoctorAppointments = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-    const doctorAppointments = storedAppointments.filter(
-      appointment => appointment.doctorName
-    );
-    setAppointments(doctorAppointments);
+    const fetchAppointments = () => {
+      try {
+        const storedAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        const doctorAppointments = storedAppointments.filter(
+          appointment => appointment.doctorName && appointment.departmentName
+        );
+        setAppointments(doctorAppointments);
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+        setAppointments([]);
+      }
+    };
+
+    fetchAppointments();
+    
+    window.addEventListener('storage', fetchAppointments);
+    
+    return () => {
+      window.removeEventListener('storage', fetchAppointments);
+    };
   }, []);
 
   const handleStatusChange = (appointmentId, newStatus) => {
-    const updatedAppointments = appointments.map(appointment => {
-      if (appointment.id === appointmentId) {
-        return { ...appointment, status: newStatus };
-      }
-      return appointment;
-    });
-    setAppointments(updatedAppointments);
-    localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+    try {
+      const allAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+      
+      const updatedAppointments = allAppointments.map(appointment => 
+        appointment.id === appointmentId 
+          ? { ...appointment, status: newStatus }
+          : appointment
+      );
+      
+      localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+      
+      setAppointments(updatedAppointments.filter(
+        appointment => appointment.doctorName && appointment.departmentName
+      ));
+    } catch (error) {
+      console.error('Error updating appointment status:', error);
+      alert('Error updating appointment status');
+    }
   };
 
   const handleDelete = (appointmentId) => {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
-      const updatedAppointments = appointments.filter(
-        appointment => appointment.id !== appointmentId
-      );
-      setAppointments(updatedAppointments);
-      localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+      try {
+        const allAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+        
+        const updatedAppointments = allAppointments.filter(
+          appointment => appointment.id !== appointmentId
+        );
+        
+        localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
+        
+        setAppointments(updatedAppointments.filter(
+          appointment => appointment.doctorName && appointment.departmentName
+        ));
+      } catch (error) {
+        console.error('Error deleting appointment:', error);
+        alert('Error deleting appointment');
+      }
     }
   };
 
