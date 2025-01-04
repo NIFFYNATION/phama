@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import ReactQuill from 'react-quill'; // Rich text editor
+import { useState, useEffect } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import { format } from 'date-fns';
+import supabase from "/services/supabase.js";
 
-const Comments = ({ postId }) => {
+const Comments = ({ articleId }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,53 +14,68 @@ const Comments = ({ postId }) => {
   const [replyTo, setReplyTo] = useState(null);
   const [editorContent, setEditorContent] = useState('');
 
-  // Rich text editor modules configuration
-  const modules = {
-    toolbar: [
-      ['bold', 'italic', 'underline'],
-      ['link'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-    ]
+  useEffect(() => {
+    fetchApprovedComments();
+  }, [articleId]);
+
+  const fetchApprovedComments = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*')
+        .eq('article_id', articleId)
+        .eq('status', 'approved') // Only fetch approved comments
+        .order('created_at', { ascending: true });
+
+      if (error) throw error;
+      setComments(data || []);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newComment = {
-      id: Date.now(),
-      ...formData,
-      message: editorContent,
-      date: new Date(),
-      status: 'pending', // for moderation
-      replies: [],
-      likes: 0,
-      parentId: replyTo
-    };
-
-    if (replyTo) {
-      setComments(prevComments => {
-        return prevComments.map(comment => {
-          if (comment.id === replyTo) {
-            return {
-              ...comment,
-              replies: [...comment.replies, newComment]
-            };
-          }
-          return comment;
-        });
-      });
-      setReplyTo(null);
-    } else {
-      setComments(prev => [...prev, newComment]);
+    
+    if (!articleId) {
+      console.error('No article ID provided');
+      return;
     }
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      website: '',
-      message: ''
-    });
-    setEditorContent('');
+    try {
+      const newComment = {
+        article_id: articleId,
+        name: formData.name,
+        email: formData.email,
+        website: formData.website || null,
+        message: editorContent,
+        created_at: new Date().toISOString(),
+        status: 'pending',
+        parent_id: replyTo || null,
+        likes: 0
+      };
+
+      const { error } = await supabase
+        .from('comments')
+        .insert([newComment]);
+
+      if (error) throw error;
+
+      alert('Your comment has been submitted and is awaiting approval.');
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        website: '',
+        message: ''
+      });
+      setEditorContent('');
+      setReplyTo(null);
+    } catch (error) {
+      console.error('Error submitting comment:', error);
+      alert('Error submitting comment. Please try again.');
+    }
   };
 
   const handleChange = (e) => {
@@ -71,44 +86,14 @@ const Comments = ({ postId }) => {
     }));
   };
 
-  const handleModeration = (commentId, status) => {
-    setComments(prevComments => 
-      prevComments.map(comment => 
-        comment.id === commentId 
-          ? { ...comment, status } 
-          : comment
-      )
-    );
-  };
-
   const CommentItem = ({ comment, isReply }) => (
     <div className={`${isReply ? 'ml-12' : ''} mb-6 p-4 bg-gray-50 rounded-lg`}>
       <div className="flex items-center justify-between mb-2">
-       
-          <div>
-            <h4 className="font-semibold">{comment.name}</h4>
-            <p className="text-sm text-gray-500">
-              {format(new Date(comment.date), 'MMM dd, yyyy')}
-            </p>
-          </div>
-       
-        <div className="flex items-center gap-2">
-          {comment.status === 'pending' && (
-            <div className="flex gap-2">
-              <button 
-                onClick={() => handleModeration(comment.id, 'approved')}
-                className="text-sm px-3 py-1 bg-green-500 text-white rounded-full"
-              >
-                Approve
-              </button>
-              <button 
-                onClick={() => handleModeration(comment.id, 'rejected')}
-                className="text-sm px-3 py-1 bg-red-500 text-white rounded-full"
-              >
-                Reject
-              </button>
-            </div>
-          )}
+        <div>
+          <h4 className="font-semibold">{comment.name}</h4>
+          <p className="text-sm text-gray-500">
+            {format(new Date(comment.created_at), 'MMM dd, yyyy')}
+          </p>
         </div>
       </div>
 
@@ -130,14 +115,11 @@ const Comments = ({ postId }) => {
         </button>
       </div>
 
-      {/* Nested Replies */}
-      {comment.replies?.length > 0 && (
-        <div className="mt-4">
-          {comment.replies.map(reply => (
-            <CommentItem key={reply.id} comment={reply} isReply={true} />
-          ))}
-        </div>
-      )}
+      {comments
+        .filter(reply => reply.parent_id === comment.id && reply.status === 'approved')
+        .map(reply => (
+          <CommentItem key={reply.id} comment={reply} isReply={true} />
+        ))}
     </div>
   );
 
@@ -179,26 +161,13 @@ const Comments = ({ postId }) => {
           className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary01"
         />
 
-<textarea 
-  value={editorContent}
-  onChange={(e) => setEditorContent(e.target.value)}
-  placeholder="Write your comment here..."
-  rows={4}
-  className="
-    w-full 
-    p-3 
-    border 
-    border-gray-300 
-    rounded-lg 
-    focus:outline-none 
-    focus:ring-2 
-    focus:ring-primary01/30 
-    focus:border-primary01 
-    transition-all 
-    duration-300 
-    resize-vertical
-  "
-/>
+        <textarea 
+          value={editorContent}
+          onChange={(e) => setEditorContent(e.target.value)}
+          placeholder="Write your comment here..."
+          rows={4}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary01/30 focus:border-primary01 transition-all duration-300 resize-vertical"
+        />
 
         <div className="flex justify-between items-center">
           <button
@@ -220,17 +189,20 @@ const Comments = ({ postId }) => {
         </div>
       </form>
 
-      {/* Comments Display Section */}
       <div className="mt-12">
         <h3 className="text-2xl font-bold mb-6">
-          Comments ({comments.length})
+          Comments ({comments.filter(c => !c.parent_id).length})
         </h3>
         
         {comments
-          .filter(comment => !comment.parentId && comment.status !== 'rejected')
+          .filter(comment => !comment.parent_id)
           .map(comment => (
             <CommentItem key={comment.id} comment={comment} isReply={false} />
           ))}
+
+        {comments.filter(c => !c.parent_id).length === 0 && (
+          <p className="text-center text-gray-500">No comments yet</p>
+        )}
       </div>
     </div>
   );

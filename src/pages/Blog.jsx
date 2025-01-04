@@ -1,7 +1,7 @@
 import Articles from "../components/Articles";
 import Pagination from "../components/Pagination";
 import { useState, useEffect } from "react";
-import  supabase, {supabaseUrl } from "/services/supabase";
+import  supabase, {supabaseUrl } from "/services/supabase.js";
 import { format, parseISO } from "date-fns";
 
 function Blog() {
@@ -35,6 +35,15 @@ function Blog() {
 
       // Transform the data and handle image URLs
       const transformedArticles = data.map(article => {
+        let formattedDate = 'No date';
+        try {
+          if (article.created_at) {
+            formattedDate = format(new Date(article.created_at), 'MMMM d, yyyy');
+          }
+        } catch (error) {
+          console.error('Date formatting error:', error);
+        }
+
         const photoUrl = article.photo_url
           ? article.photo_url.startsWith('http')
             ? article.photo_url
@@ -48,7 +57,7 @@ function Blog() {
           photo: photoUrl,
           photo_url: photoUrl,
           author: article.author || '',
-          date: format(parseISO(article.created_at), 'MMMM d, yyyy'),
+          date: formattedDate,
           headline: article.headline || article.title || ''
         };
       });

@@ -215,7 +215,7 @@ const authorImageUrl = data.author_image
           </div>
         </div>
         <div className="mt-8 w-[90%] md:w-[57%] mx-auto">
-          <Comments postId={id} />
+          <Comments articleId={id} />
         </div>
       </div>
     </>

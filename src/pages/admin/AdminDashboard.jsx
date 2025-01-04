@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import supabase, { supabaseUrl } from '/services/supabase.js';
-import { format, parseISO, isValid } from 'date-fns';
+import { format, parseISO } from "date-fns";
+
 
 const AdminDashboard = () => {
   const [articles, setArticles] = useState([]);
@@ -17,6 +18,16 @@ const AdminDashboard = () => {
     fetchArticles();
   }, [navigate]);
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "No date available";
+    try {
+      return format(parseISO(dateString), "MMMM d, yyyy • h:mm a");
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return "Invalid date";
+    }
+  };
+
   const fetchArticles = async () => {
     try {
       const { data, error } = await supabase
@@ -30,17 +41,6 @@ const AdminDashboard = () => {
       console.error('Error fetching articles:', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const formatDate = (dateString) => {
-    if (!dateString) return 'No date';
-    try {
-      const date = parseISO(dateString);
-      return isValid(date) ? format(date, 'MMM dd, yyyy') : 'Invalid date';
-    } catch (error) {
-      console.error('Date formatting error:', error);
-      return 'Invalid date';
     }
   };
 
@@ -98,7 +98,7 @@ const AdminDashboard = () => {
                   <h3 className="font-semibold mb-2 line-clamp-2">{article.title}</h3>
                   <div className="space-y-2 text-sm text-gray-600">
                     <p>Author: {article.author}</p>
-                    <p>Date: {formatDate(article.created_at)}</p>
+                    <p>Date: {article.date}</p>
                   </div>
                   <div className="flex gap-3 mt-4">
                     <button

@@ -398,7 +398,7 @@ function Homepage() {
         <MedicalExperts title={<span className="text-center min-w-[220px] ring-1 ring-[#2B78CA] ring-opacity-60">MEDICAL EXPERTS</span>} heading="The Professional Doctors" />
       </section>
       <section>
-        <Articles />
+        <Articles showHeader={true} showReadMore={true} usePagination={false} />
       </section>
       <AppointmentModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
