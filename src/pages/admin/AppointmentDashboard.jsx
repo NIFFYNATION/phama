@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import supabase from '/services/supabase.js';
+import Pagination from "../../components/Pagination";
 
 const AppointmentModal = ({ appointment, onClose, onStatusChange }) => {
   if (!appointment) return null;
@@ -133,6 +134,8 @@ const AppointmentDashboard = () => {
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const appointmentsPerPage = 10;
 
   useEffect(() => {
     fetchAppointments();
@@ -218,6 +221,17 @@ const AppointmentDashboard = () => {
     if (filter === 'all') return true;
     return appointment.status === filter;
   });
+
+  // Calculate pagination
+  const indexOfLastAppointment = currentPage * appointmentsPerPage;
+  const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
+  const currentAppointments = filteredAppointments.slice(indexOfFirstAppointment, indexOfLastAppointment);
+  const totalPages = Math.ceil(filteredAppointments.length / appointmentsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   if (loading) {
     return (
@@ -361,7 +375,7 @@ const AppointmentDashboard = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredAppointments.map((appointment) => (
+                {currentAppointments.map((appointment) => (
                   <tr 
                     key={appointment.id}
                     className="hover:bg-gray-50 cursor-pointer"
@@ -426,6 +440,16 @@ const AppointmentDashboard = () => {
             </table>
           </div>
         </div>
+
+        {filteredAppointments.length > appointmentsPerPage && (
+          <div className="mt-6">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        )}
       </div>
 
       {/* Appointment Detail Modal */}

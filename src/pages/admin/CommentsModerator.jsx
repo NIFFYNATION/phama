@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import supabase from '/services/supabase.js';
 import { format } from 'date-fns';
+import Pagination from "../../components/Pagination";
 
 const AdminBlogSingle = () => {
   const { id } = useParams();
@@ -10,6 +11,8 @@ const AdminBlogSingle = () => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('pending');
+  const [currentPage, setCurrentPage] = useState(1);
+  const commentsPerPage = 10;
 
   useEffect(() => {
     fetchArticleAndComments();
@@ -58,27 +61,23 @@ const AdminBlogSingle = () => {
     }
   };
 
-  const handleDelete = async (commentId) => {
-    try {
-      const { error } = await supabase
-        .from('comments')
-        .delete()
-        .eq('id', commentId);
-
-      if (error) throw error;
-
-      setComments(comments.filter(comment => comment.id !== commentId));
-    } catch (error) {
-      console.error('Error deleting comment:', error);
-    }
-  };
-
   const filteredComments = comments.filter(comment => {
     if (activeTab === 'pending') return comment.status === 'pending';
     if (activeTab === 'approved') return comment.status === 'approved';
     if (activeTab === 'rejected') return comment.status === 'rejected';
     return true;
   });
+
+  // Calculate pagination
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  const currentComments = filteredComments.slice(indexOfFirstComment, indexOfLastComment);
+  const totalPages = Math.ceil(filteredComments.length / commentsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   if (loading) return <div className="contain">Loading...</div>;
   if (!article) return <div className="contain">Article not found</div>;
@@ -133,7 +132,7 @@ const AdminBlogSingle = () => {
           </div>
           
           <div className="space-y-4">
-            {filteredComments.map(comment => (
+            {currentComments.map(comment => (
               <div 
                 key={comment.id} 
                 className={`p-4 rounded-lg ${
@@ -176,16 +175,6 @@ const AdminBlogSingle = () => {
                         Reset
                       </button>
                     )}
-                    <button
-                      onClick={() => {
-                        if (window.confirm('Are you sure you want to delete this comment?')) {
-                          handleDelete(comment.id);
-                        }
-                      }}
-                      className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
                   </div>
                 </div>
                 
@@ -195,10 +184,18 @@ const AdminBlogSingle = () => {
               </div>
             ))}
             
-            {filteredComments.length === 0 && (
+            {currentComments.length === 0 && (
               <p className="text-gray-500 text-center">
                 No {activeTab} comments found
               </p>
+            )}
+
+            {filteredComments.length > commentsPerPage && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             )}
           </div>
         </div>

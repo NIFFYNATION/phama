@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import supabase, { supabaseUrl } from '/services/supabase.js';
-import { format, parseISO } from "date-fns";
-
+import Pagination from '../../components/Pagination';
 
 const AdminDashboard = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const articlesPerPage = 10; // Number of articles per page
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,14 +18,26 @@ const AdminDashboard = () => {
     }
     
     fetchArticles();
-  }, [navigate]);
+  }, [navigate, currentPage]); // Add currentPage as dependency
 
   const fetchArticles = async () => {
     try {
+      // First, get the total count
+      const { count } = await supabase
+        .from('articles')
+        .select('*', { count: 'exact', head: true });
+
+      setTotalCount(count || 0);
+
+      // Then fetch the paginated data
+      const from = (currentPage - 1) * articlesPerPage;
+      const to = from + articlesPerPage - 1;
+
       const { data, error } = await supabase
         .from('articles')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false })
+        .range(from, to);
 
       if (error) throw error;
       setArticles(data || []);
@@ -49,6 +63,13 @@ const AdminDashboard = () => {
 
       // Remove the deleted article from the state
       setArticles(articles.filter(article => article.id !== articleId));
+      
+      // Refetch if we're on a page that might now be empty
+      if (articles.length === 1 && currentPage > 1) {
+        setCurrentPage(prev => prev - 1);
+      } else {
+        fetchArticles();
+      }
     } catch (error) {
       console.error('Error deleting article:', error);
       alert('Failed to delete article');
@@ -66,7 +87,14 @@ const AdminDashboard = () => {
     });
   };
 
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   if (loading) return <div>Loading...</div>;
+
+  const totalPages = Math.ceil(totalCount / articlesPerPage);
 
   return (
     <div className="p-3 sm:p-6 bg-gray-50 min-h-screen">
@@ -92,7 +120,7 @@ const AdminDashboard = () => {
             </button>
             <Link
               to="/admin/doctor-appointments"
-              className="px-4 py-2 bg-primary01 text-white rounded-lg hover:bg-primary01/90"
+              className="px-4 py-2 bg-primary01 text-white rounded-lg hover:bg-primary01/90 text-center"
             >
               View Doctor Appointments
             </Link>
@@ -195,6 +223,17 @@ const AdminDashboard = () => {
             {articles.length === 0 && (
               <div className="text-center py-8 text-gray-500">
                 No articles found. Create your first post!
+              </div>
+            )}
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="mt-6">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
               </div>
             )}
           </div>

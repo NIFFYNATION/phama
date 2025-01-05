@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import Pagination from "../../components/Pagination";
 
 const DoctorAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [filter, setFilter] = useState('all');
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const appointmentsPerPage = 9; // 3x3 grid layout
 
   useEffect(() => {
     const fetchAppointments = () => {
@@ -78,6 +81,17 @@ const DoctorAppointments = () => {
     return appointment.status === filter;
   });
 
+  // Calculate pagination
+  const indexOfLastAppointment = currentPage * appointmentsPerPage;
+  const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
+  const currentAppointments = filteredAppointments.slice(indexOfFirstAppointment, indexOfLastAppointment);
+  const totalPages = Math.ceil(filteredAppointments.length / appointmentsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
@@ -112,7 +126,7 @@ const DoctorAppointments = () => {
 
         {/* Appointments Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredAppointments.map((appointment) => (
+          {currentAppointments.map((appointment) => (
             <div 
               key={appointment.id} 
               className="bg-white rounded-lg shadow-sm p-6"
@@ -176,6 +190,16 @@ const DoctorAppointments = () => {
             </div>
           ))}
         </div>
+
+        {filteredAppointments.length > appointmentsPerPage && (
+          <div className="mt-6">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        )}
 
         {selectedAppointment && (
           <AppointmentModal
