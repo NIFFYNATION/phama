@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Articles.module.css";
 import Button from "./Button";
 import { NavLink } from "react-router-dom";
-import supabase from "/services/supabase";
+import supabase from "/services/supabase.js";
 
 function Articles({
   customStyles = {},
@@ -53,6 +53,17 @@ function Articles({
     ? recentArticles
     : recentArticles.slice(0, noOfElement);
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "";
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
   if (loading) return <div className="text-center py-4">Loading articles...</div>;
 
   return (
@@ -95,7 +106,7 @@ function Articles({
                   />
                   <div className={customStyles?.content || ""}>
                     <p className={`p ring-1 p-1 mt-6 ring-[#CECECE] min-w-[170px] sm:min-w-[180px] ${customStyles?.date || ""}`}>
-                      {new Date(article.created_at).toLocaleDateString()}
+                      {formatDate(article.created_at)}
                     </p>
                     <h3 className={`text-[16px] font-[600] ${customStyles?.headline || ""}`}>
                       {article.headline || article.title}

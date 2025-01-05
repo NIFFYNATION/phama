@@ -19,7 +19,7 @@ import Team from "./pages/Team";
 import Pricing from "./pages/Pricing";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminBlogSingle from "./pages/admin/AdminBlogSingle";
+import AdminBlogSingle from "./pages/admin/CommentsModerator";
 import CreatePost from "./pages/admin/CreatePost";
 import EditPost from "./pages/admin/EditPost";
 import AppointmentDashboard from "./pages/admin/AppointmentDashboard";

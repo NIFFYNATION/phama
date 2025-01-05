@@ -1,8 +1,7 @@
 import Articles from "../components/Articles";
 import Pagination from "../components/Pagination";
 import { useState, useEffect } from "react";
-import  supabase, {supabaseUrl } from "/services/supabase.js";
-import { format, parseISO } from "date-fns";
+import supabase, { supabaseUrl } from "/services/supabase.js";
 
 function Blog() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +12,7 @@ function Blog() {
 
   useEffect(() => {
     fetchArticles();
-  }, [currentPage]); // Re-fetch when page changes
+  }, [currentPage]);
 
   const fetchArticles = async () => {
     try {
@@ -25,7 +24,7 @@ function Blog() {
       setTotalCount(count || 0);
 
       // Then fetch the paginated data
-      const { data, error } = await supabase
+      const { data: articlesData, error } = await supabase
         .from('articles')
         .select('*')
         .order('created_at', { ascending: false })
@@ -34,16 +33,7 @@ function Blog() {
       if (error) throw error;
 
       // Transform the data and handle image URLs
-      const transformedArticles = data.map(article => {
-        let formattedDate = 'No date';
-        try {
-          if (article.created_at) {
-            formattedDate = format(new Date(article.created_at), 'MMMM d, yyyy');
-          }
-        } catch (error) {
-          console.error('Date formatting error:', error);
-        }
-
+      const transformedArticles = articlesData.map(article => {
         const photoUrl = article.photo_url
           ? article.photo_url.startsWith('http')
             ? article.photo_url
@@ -57,7 +47,7 @@ function Blog() {
           photo: photoUrl,
           photo_url: photoUrl,
           author: article.author || '',
-          date: formattedDate,
+          created_at: article.created_at,
           headline: article.headline || article.title || ''
         };
       });
@@ -74,7 +64,7 @@ function Blog() {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on page change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const blogStyles = {

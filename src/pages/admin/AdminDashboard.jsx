@@ -18,16 +18,6 @@ const AdminDashboard = () => {
     fetchArticles();
   }, [navigate]);
 
-  const formatDate = (dateString) => {
-    if (!dateString) return "No date available";
-    try {
-      return format(parseISO(dateString), "MMMM d, yyyy • h:mm a");
-    } catch (error) {
-      console.error('Error formatting date:', error);
-      return "Invalid date";
-    }
-  };
-
   const fetchArticles = async () => {
     try {
       const { data, error } = await supabase
@@ -42,6 +32,38 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDelete = async (articleId) => {
+    if (!window.confirm('Are you sure you want to delete this article?')) {
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('articles')
+        .delete()
+        .eq('id', articleId);
+
+      if (error) throw error;
+
+      // Remove the deleted article from the state
+      setArticles(articles.filter(article => article.id !== articleId));
+    } catch (error) {
+      console.error('Error deleting article:', error);
+      alert('Failed to delete article');
+    }
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "";
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
   };
 
   if (loading) return <div>Loading...</div>;
@@ -98,7 +120,7 @@ const AdminDashboard = () => {
                   <h3 className="font-semibold mb-2 line-clamp-2">{article.title}</h3>
                   <div className="space-y-2 text-sm text-gray-600">
                     <p>Author: {article.author}</p>
-                    <p>Date: {article.date}</p>
+                    <p>Date: {formatDate(article.created_at)}</p>
                   </div>
                   <div className="flex gap-3 mt-4">
                     <button
@@ -112,6 +134,12 @@ const AdminDashboard = () => {
                       className="px-3 py-1.5 bg-primary01 text-white rounded-lg hover:bg-primary01/90 text-sm"
                     >
                       Comments
+                    </button>
+                    <button
+                      onClick={() => handleDelete(article.id)}
+                      className="px-3 py-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 text-sm"
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
@@ -134,9 +162,7 @@ const AdminDashboard = () => {
                     <tr key={article.id} className="border-b hover:bg-gray-50">
                       <td className="py-3 px-4">{article.title}</td>
                       <td className="py-3 px-4">{article.author}</td>
-                      <td className="py-3 px-4">
-                        {formatDate(article.created_at)}
-                      </td>
+                      <td className="py-3 px-4">{formatDate(article.created_at)}</td>
                       <td className="py-3 px-4">
                         <div className="flex gap-4">
                           <button
@@ -150,6 +176,12 @@ const AdminDashboard = () => {
                             className="text-primary01 hover:underline"
                           >
                             View Comments
+                          </button>
+                          <button
+                            onClick={() => handleDelete(article.id)}
+                            className="text-red-500 hover:underline"
+                          >
+                            Delete
                           </button>
                         </div>
                       </td>

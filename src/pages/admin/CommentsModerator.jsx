@@ -58,6 +58,21 @@ const AdminBlogSingle = () => {
     }
   };
 
+  const handleDelete = async (commentId) => {
+    try {
+      const { error } = await supabase
+        .from('comments')
+        .delete()
+        .eq('id', commentId);
+
+      if (error) throw error;
+
+      setComments(comments.filter(comment => comment.id !== commentId));
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  };
+
   const filteredComments = comments.filter(comment => {
     if (activeTab === 'pending') return comment.status === 'pending';
     if (activeTab === 'approved') return comment.status === 'approved';
@@ -161,6 +176,16 @@ const AdminBlogSingle = () => {
                         Reset
                       </button>
                     )}
+                    <button
+                      onClick={() => {
+                        if (window.confirm('Are you sure you want to delete this comment?')) {
+                          handleDelete(comment.id);
+                        }
+                      }}
+                      className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
                 

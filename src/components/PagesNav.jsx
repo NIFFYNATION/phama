@@ -133,14 +133,7 @@ function PagesNav() {
                         Team
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        to="/teamsingle"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        Team Single
-                      </Link>
-                    </li>
+                  
                     <li>
                       <Link
                         to="/blog"
