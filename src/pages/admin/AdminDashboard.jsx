@@ -12,11 +12,17 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isAdmin = localStorage.getItem('isAdmin');
-    if (!isAdmin) {
+    checkAuth();
+  }, []);
+
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
       navigate('/admin/login');
     }
-    
+  };
+
+  useEffect(() => {
     fetchArticles();
   }, [navigate, currentPage]); // Add currentPage as dependency
 

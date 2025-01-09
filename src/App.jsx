@@ -24,6 +24,7 @@ import CreatePost from "./pages/admin/CreatePost";
 import EditPost from "./pages/admin/EditPost";
 import AppointmentDashboard from "./pages/admin/AppointmentDashboard";
 import DoctorAppointments from "./pages/admin/DoctorAppointments";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const serviceRoutes = [
   { path: "dental", element: <Dental />, title: "Dental" },
@@ -68,10 +69,15 @@ function App() {
             path="/admin/appointments"
             element={<AppointmentDashboard />}
           />
-          <Route path="/admin">
+          <Route path="/admin"  element={<AdminLogin />}>
             <Route path="appointments" element={<AppointmentDashboard />} />
             <Route path="doctor-appointments" element={<DoctorAppointments />} />
           </Route>
+          <Route path="/admin/*" element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
